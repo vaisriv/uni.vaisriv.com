@@ -1,0 +1,38 @@
+name: Update notes submodule
+
+on:
+  repository_dispatch:
+    types: [notes-updated]
+
+permissions:
+  contents: write
+
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo (no submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+            
+      - name: Configure Git
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Setup SSH for submodules
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SUBMODULE_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Init and update submodules
+        run: |
+          git submodule sync
+          git submodule update --init --recursive
+          git submodule update --remote notes
+          git add notes
+          git commit -m "chore: bump notes submodule to ${{ github.event.client_payload.notes_sha }}"
+          git push
