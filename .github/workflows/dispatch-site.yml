@@ -34,5 +34,5 @@ jobs:
           git submodule update --init --recursive
           git submodule update --remote notes
           git add notes
-          git commit -m "chore: bump notes submodule to ${{ github.event.client_payload.notes_sha }}"
+          git commit -m "chore(submodule): bump notes to ${{ github.event.client_payload.notes_sha }}"
           git push
