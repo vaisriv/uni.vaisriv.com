@@ -1,7 +1,7 @@
 ---
 title: "Darkmode"
 tags:
-  - component
+    - component
 ---
 
 Quartz supports darkmode out of the box that respects the user's theme preference. Any future manual toggles of the darkmode switch will be saved in the browser's local storage so it can be persisted across future page loads.
@@ -17,7 +17,7 @@ You can also listen to the `themechange` event to perform any custom logic when 
 
 ```js
 document.addEventListener("themechange", (e) => {
-  console.log("Theme changed to " + e.detail.theme) // either "light" or "dark"
-  // your logic here
-})
+    console.log("Theme changed to " + e.detail.theme); // either "light" or "dark"
+    // your logic here
+});
 ```

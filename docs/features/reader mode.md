@@ -1,7 +1,7 @@
 ---
 title: Reader Mode
 tags:
-  - component
+    - component
 ---
 
 Reader Mode is a feature that allows users to focus on the content by hiding the sidebars and other UI elements. When enabled, it provides a clean, distraction-free reading experience.
@@ -36,9 +36,9 @@ Example customization in your custom CSS:
 
 ```scss
 .readermode {
-  // Customize the button
-  svg {
-    stroke: var(--custom-color);
-  }
+    // Customize the button
+    svg {
+        stroke: var(--custom-color);
+    }
 }
 ```

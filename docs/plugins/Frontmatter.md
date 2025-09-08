@@ -1,7 +1,7 @@
 ---
 title: "Frontmatter"
 tags:
-  - plugin/transformer
+    - plugin/transformer
 ---
 
 This plugin parses the frontmatter of the page using the [gray-matter](https://github.com/jonschlinkert/gray-matter) library. See [[authoring content#Syntax]], [[Obsidian compatibility]] and [[OxHugo compatibility]] for more information.
@@ -22,48 +22,48 @@ This plugin accepts the following configuration options:
 Quartz supports the following frontmatter:
 
 - title
-  - `title`
+    - `title`
 - description
-  - `description`
+    - `description`
 - permalink
-  - `permalink`
+    - `permalink`
 - comments
-  - `comments`
+    - `comments`
 - lang
-  - `lang`
+    - `lang`
 - publish
-  - `publish`
+    - `publish`
 - draft
-  - `draft`
+    - `draft`
 - enableToc
-  - `enableToc`
+    - `enableToc`
 - tags
-  - `tags`
-  - `tag`
+    - `tags`
+    - `tag`
 - aliases
-  - `aliases`
-  - `alias`
+    - `aliases`
+    - `alias`
 - cssclasses
-  - `cssclasses`
-  - `cssclass`
+    - `cssclasses`
+    - `cssclass`
 - socialDescription
-  - `socialDescription`
+    - `socialDescription`
 - socialImage
-  - `socialImage`
-  - `image`
-  - `cover`
+    - `socialImage`
+    - `image`
+    - `cover`
 - created
-  - `created`
-  - `date`
+    - `created`
+    - `date`
 - modified
-  - `modified`
-  - `lastmod`
-  - `updated`
-  - `last-modified`
+    - `modified`
+    - `lastmod`
+    - `updated`
+    - `last-modified`
 - published
-  - `published`
-  - `publishDate`
-  - `date`
+    - `published`
+    - `publishDate`
+    - `date`
 
 ## API
 

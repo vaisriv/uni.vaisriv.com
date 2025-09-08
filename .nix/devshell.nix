@@ -1,8 +1,6 @@
 {
     pkgs,
     perSystem,
-    inputs,
-    system,
     ...
 }:
 perSystem.devshell.mkShell {
@@ -24,7 +22,7 @@ perSystem.devshell.mkShell {
                 '';
         }
     ];
-    packages = with pkgs; [ nodejs_24 ];
+    packages = with pkgs; [nodejs_24];
 
     env = [];
 }

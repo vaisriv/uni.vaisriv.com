@@ -1,7 +1,7 @@
 ---
 title: Full-text Search
 tags:
-  - component
+    - component
 ---
 
 Full-text search in Quartz is powered by [Flexsearch](https://github.com/nextapps-de/flexsearch). It's fast enough to return search results in under 10ms for Quartzs as large as half a million words.
@@ -27,4 +27,4 @@ It properly tokenizes Chinese, Korean, and Japenese characters and constructs se
 - Component: `quartz/components/Search.tsx`
 - Style: `quartz/components/styles/search.scss`
 - Script: `quartz/components/scripts/search.inline.ts`
-  - You can edit `contextWindowWords`, `numSearchResults` or `numTagResults` to suit your needs
+    - You can edit `contextWindowWords`, `numSearchResults` or `numTagResults` to suit your needs

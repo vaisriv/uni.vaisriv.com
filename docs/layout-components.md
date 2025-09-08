@@ -10,35 +10,35 @@ The `Flex` component creates a [flexible box layout](https://developer.mozilla.o
 
 ```typescript
 type FlexConfig = {
-  components: {
-    Component: QuartzComponent
-    grow?: boolean // whether component should grow to fill space
-    shrink?: boolean // whether component should shrink if needed
-    basis?: string // initial main size of the component
-    order?: number // order in flex container
-    align?: "start" | "end" | "center" | "stretch" // cross-axis alignment
-    justify?: "start" | "end" | "center" | "between" | "around" // main-axis alignment
-  }[]
-  direction?: "row" | "row-reverse" | "column" | "column-reverse"
-  wrap?: "nowrap" | "wrap" | "wrap-reverse"
-  gap?: string
-}
+    components: {
+        Component: QuartzComponent;
+        grow?: boolean; // whether component should grow to fill space
+        shrink?: boolean; // whether component should shrink if needed
+        basis?: string; // initial main size of the component
+        order?: number; // order in flex container
+        align?: "start" | "end" | "center" | "stretch"; // cross-axis alignment
+        justify?: "start" | "end" | "center" | "between" | "around"; // main-axis alignment
+    }[];
+    direction?: "row" | "row-reverse" | "column" | "column-reverse";
+    wrap?: "nowrap" | "wrap" | "wrap-reverse";
+    gap?: string;
+};
 ```
 
 ### Example Usage
 
 ```typescript
 Component.Flex({
-  components: [
-    {
-      Component: Component.Search(),
-      grow: true, // Search will grow to fill available space
-    },
-    { Component: Component.Darkmode() }, // Darkmode keeps its natural size
-  ],
-  direction: "row",
-  gap: "1rem",
-})
+    components: [
+        {
+            Component: Component.Search(),
+            grow: true, // Search will grow to fill available space
+        },
+        { Component: Component.Darkmode() }, // Darkmode keeps its natural size
+    ],
+    direction: "row",
+    gap: "1rem",
+});
 ```
 
 > [!note] Overriding behavior
@@ -46,7 +46,7 @@ Component.Flex({
 >
 > ```scss
 > .flex-component {
->   display: block; // or any other display type
+>     display: block; // or any other display type
 > }
 > ```
 
@@ -57,7 +57,7 @@ The `MobileOnly` component is a wrapper that makes its child component only visi
 ### Example Usage
 
 ```typescript
-Component.MobileOnly(Component.Spacer())
+Component.MobileOnly(Component.Spacer());
 ```
 
 ## `DesktopOnly` Component
@@ -67,7 +67,7 @@ The `DesktopOnly` component is the counterpart to `MobileOnly`. It makes its chi
 ### Example Usage
 
 ```typescript
-Component.DesktopOnly(Component.TableOfContents())
+Component.DesktopOnly(Component.TableOfContents());
 ```
 
 ## `ConditionalRender` Component
@@ -76,27 +76,27 @@ The `ConditionalRender` component is a wrapper that conditionally renders its ch
 
 ```typescript
 type ConditionalRenderConfig = {
-  component: QuartzComponent
-  condition: (props: QuartzComponentProps) => boolean
-}
+    component: QuartzComponent;
+    condition: (props: QuartzComponentProps) => boolean;
+};
 ```
 
 ### Example Usage
 
 ```typescript
 Component.ConditionalRender({
-  component: Component.Search(),
-  condition: (props) => props.displayClass !== "fullpage",
-})
+    component: Component.Search(),
+    condition: (props) => props.displayClass !== "fullpage",
+});
 ```
 
 The example above would only render the Search component when the page is not in fullpage mode.
 
 ```typescript
 Component.ConditionalRender({
-  component: Component.Breadcrumbs(),
-  condition: (page) => page.fileData.slug !== "index",
-})
+    component: Component.Breadcrumbs(),
+    condition: (page) => page.fileData.slug !== "index",
+});
 ```
 
 The example above would hide breadcrumbs on the root `index.md` page.

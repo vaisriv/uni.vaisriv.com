@@ -40,48 +40,48 @@ In your local Quartz, create a new file `quartz/.github/workflows/deploy.yml`.
 name: Deploy Quartz site to GitHub Pages
 
 on:
-  push:
-    branches:
-      - v4
+    push:
+        branches:
+            - v4
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+    contents: read
+    pages: write
+    id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+    group: "pages"
+    cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Fetch all history for git info
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: Install Dependencies
-        run: npm ci
-      - name: Build Quartz
-        run: npx quartz build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
+    build:
+        runs-on: ubuntu-22.04
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0 # Fetch all history for git info
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+            - name: Install Dependencies
+              run: npm ci
+            - name: Build Quartz
+              run: npx quartz build
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: public
 
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    deploy:
+        needs: build
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
 ```
 
 Then:
@@ -105,12 +105,12 @@ Here's how to add a custom domain to your GitHub pages deployment.
 2. In the "Code and automation" section of the sidebar, click "Pages".
 3. Under "Custom Domain", type your custom domain and click "Save".
 4. This next step depends on whether you are using an apex domain (`example.com`) or a subdomain (`subdomain.example.com`).
-   - If you are using an apex domain, navigate to your DNS provider and create an `A` record that points your apex domain to GitHub's name servers which have the following IP addresses:
-     - `185.199.108.153`
-     - `185.199.109.153`
-     - `185.199.110.153`
-     - `185.199.111.153`
-   - If you are using a subdomain, navigate to your DNS provider and create a `CNAME` record that points your subdomain to the default domain for your site. For example, if you want to use the subdomain `quartz.example.com` for your user site, create a `CNAME` record that points `quartz.example.com` to `<github-username>.github.io`.
+    - If you are using an apex domain, navigate to your DNS provider and create an `A` record that points your apex domain to GitHub's name servers which have the following IP addresses:
+        - `185.199.108.153`
+        - `185.199.109.153`
+        - `185.199.110.153`
+        - `185.199.111.153`
+    - If you are using a subdomain, navigate to your DNS provider and create a `CNAME` record that points your subdomain to the default domain for your site. For example, if you want to use the subdomain `quartz.example.com` for your user site, create a `CNAME` record that points `quartz.example.com` to `<github-username>.github.io`.
 
 ![[dns records.png]]_The above shows a screenshot of Google Domains configured for both `jzhao.xyz` (an apex domain) and `quartz.jzhao.xyz` (a subdomain)._
 
@@ -129,7 +129,7 @@ Before deploying to Vercel, a `vercel.json` file is required at the root of the 
 
 ```json title="vercel.json"
 {
-  "cleanUrls": true
+    "cleanUrls": true
 }
 ```
 
@@ -186,39 +186,39 @@ In your local Quartz, create a new file `.gitlab-ci.yml`.
 
 ```yaml title=".gitlab-ci.yml"
 stages:
-  - build
-  - deploy
+    - build
+    - deploy
 
 image: node:22
 cache: # Cache modules in between jobs
-  key: $CI_COMMIT_REF_SLUG
-  paths:
-    - .npm/
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+        - .npm/
 
 build:
-  stage: build
-  rules:
-    - if: '$CI_COMMIT_REF_NAME == "v4"'
-  before_script:
-    - hash -r
-    - npm ci --cache .npm --prefer-offline
-  script:
-    - npx quartz build
-  artifacts:
-    paths:
-      - public
-  tags:
-    - gitlab-org-docker
+    stage: build
+    rules:
+        - if: '$CI_COMMIT_REF_NAME == "v4"'
+    before_script:
+        - hash -r
+        - npm ci --cache .npm --prefer-offline
+    script:
+        - npx quartz build
+    artifacts:
+        paths:
+            - public
+    tags:
+        - gitlab-org-docker
 
 pages:
-  stage: deploy
-  rules:
-    - if: '$CI_COMMIT_REF_NAME == "v4"'
-  script:
-    - echo "Deploying to GitLab Pages..."
-  artifacts:
-    paths:
-      - public
+    stage: deploy
+    rules:
+        - if: '$CI_COMMIT_REF_NAME == "v4"'
+    script:
+        - echo "Deploying to GitLab Pages..."
+    artifacts:
+        paths:
+            - public
 ```
 
 When `.gitlab-ci.yaml` is committed, GitLab will build and deploy the website as a GitLab Page. You can find the url under `Deploy > Pages` in the sidebar.

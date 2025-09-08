@@ -19,7 +19,7 @@ Additionally, Quartz also allows you to specify additional metadata in your note
 title: Example Title
 draft: false
 tags:
-  - example-tag
+    - example-tag
 ---
 
 The rest of your content lives here. You can use **Markdown** here :)

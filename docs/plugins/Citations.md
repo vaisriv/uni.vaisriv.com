@@ -1,7 +1,7 @@
 ---
 title: "Citations"
 tags:
-  - plugin/transformer
+    - plugin/transformer
 ---
 
 This plugin adds Citation support to Quartz.
