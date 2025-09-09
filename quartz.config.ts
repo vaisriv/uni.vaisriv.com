@@ -90,8 +90,8 @@ const config: QuartzConfig = {
                     "\\vecb": "\\vec{\\bm{#1}}",
 
                     // functions
-                    "\\func": "\\mathrm{#1}",
-                    "\\fn": "\\mathrm{#1}(#2)",
+                    "\\func": "\\mathrm{\\,#1}",
+                    "\\fn": "\\mathrm{\\,#1}(#2)",
 
                     // derivatives
                     "\\drv": "\\frac{\\mathrm{d}#1}{\\mathrm{d}#2}",
@@ -110,42 +110,42 @@ const config: QuartzConfig = {
                         "\\frac{\\partial^{2}}{\\partial{}{#1}^{2}}\\left(#2\\right)",
 
                     // probability
-                    "\\E": "\\mathrm{E}(#1)",
-                    "\\Var": "\\mathrm{Var}(#1)",
-                    "\\Cov": "\\mathrm{Cov}(#1)",
-                    "\\Bias": "\\mathrm{Bias}(#1)",
-                    "\\Prob": "\\mathrm{Pr}(#1)",
+                    "\\E": "\\mathrm{\\,E}(#1)",
+                    "\\Var": "\\mathrm{\\,Var}(#1)",
+                    "\\Cov": "\\mathrm{\\,Cov}(#1)",
+                    "\\Bias": "\\mathrm{\\,Bias}(#1)",
+                    "\\Prob": "\\mathrm{\\,Pr}(#1)",
 
                     // trig
-                    "\\sin": "\\mathrm{sin}(#1)",
-                    "\\cos": "\\mathrm{cos}(#1)",
-                    "\\tan": "\\mathrm{tan}(#1)",
-                    "\\csc": "\\mathrm{csc}(#1)",
-                    "\\sec": "\\mathrm{sec}(#1)",
-                    "\\cot": "\\mathrm{cot}(#1)",
-                    "\\sinh": "\\mathrm{sinh}(#1)",
-                    "\\cosh": "\\mathrm{cosh}(#1)",
-                    "\\tanh": "\\mathrm{tanh}(#1)",
-                    "\\coth": "\\mathrm{coth}(#1)",
-                    "\\arcsin": "\\mathrm{arcsin}(#1)",
-                    "\\arccos": "\\mathrm{arccos}(#1)",
-                    "\\arctan": "\\mathrm{arctan}(#1)",
+                    "\\sin": "\\mathrm{\\,sin}(#1)",
+                    "\\cos": "\\mathrm{\\,cos}(#1)",
+                    "\\tan": "\\mathrm{\\,tan}(#1)",
+                    "\\csc": "\\mathrm{\\,csc}(#1)",
+                    "\\sec": "\\mathrm{\\,sec}(#1)",
+                    "\\cot": "\\mathrm{\\,cot}(#1)",
+                    "\\sinh": "\\mathrm{\\,sinh}(#1)",
+                    "\\cosh": "\\mathrm{\\,cosh}(#1)",
+                    "\\tanh": "\\mathrm{\\,tanh}(#1)",
+                    "\\coth": "\\mathrm{\\,coth}(#1)",
+                    "\\arcsin": "\\mathrm{\\,arcsin}(#1)",
+                    "\\arccos": "\\mathrm{\\,arccos}(#1)",
+                    "\\arctan": "\\mathrm{\\,arctan}(#1)",
 
                     // log, ln, etc
-                    "\\log": "\\mathrm{log}(#1)",
-                    "\\ln": "\\mathrm{ln}(#1)",
+                    "\\log": "\\mathrm{\\,log}(#1)",
+                    "\\ln": "\\mathrm{\\,ln}(#1)",
 
                     // num sets
-                    "\\Re": "\\mathrm{Re}\\{#1\\}",
-                    "\\Im": "\\mathrm{Im}\\{#1\\}",
+                    "\\Re": "\\mathrm{\\,Re}\\{#1\\}",
+                    "\\Im": "\\mathrm{\\,Im}\\{#1\\}",
 
                     // laplace
-                    "\\laplace": "\\mathscr{L}\\{#1\\}",
-                    "\\ilaplace": "\\mathscr{L}^{-1}\\{#1\\}",
+                    "\\laplace": "\\mathscr{\\,L}\\{#1\\}",
+                    "\\ilaplace": "\\mathscr{\\,L}^{-1}\\{#1\\}",
 
                     // integrals
-                    "\\inti": "\\int #1 \\mathrm{d}#2",
-                    "\\intd": "\\int_{#1}^{#2} #3 \\mathrm{d}#4",
+                    "\\inti": "\\int #1 \\mathrm{\\,d}#2",
+                    "\\intd": "\\int_{#1}^{#2} #3 \\mathrm{\\,d}#4",
                 },
             }),
         ],
