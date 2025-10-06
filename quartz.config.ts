@@ -136,8 +136,8 @@ const config: QuartzConfig = {
                     "\\ln": "\\mathrm{\\,ln}\\left(#1\\right)",
 
                     // num sets
-                    "\\Re": "\\mathrm{\\,Re}\\left{#1\\right}",
-                    "\\Im": "\\mathrm{\\,Im}\\left{#1\\right}",
+                    "\\Re": "\\mathfrak{\\,Re}\\left{#1\\right}",
+                    "\\Im": "\\mathfrak{\\,Im}\\left{#1\\right}",
 
                     // laplace
                     "\\laplace": "\\mathscr{\\,L}\\left{#1\\right}",
