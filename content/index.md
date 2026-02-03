@@ -1,1 +1,1 @@
-../notes/index.md
+../../../../uni/notes/index.md
