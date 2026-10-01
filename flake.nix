@@ -3,8 +3,7 @@
 
     inputs = {
         # nixpkgs
-        nixpkgs.url = "github:nixos/nixpkgs";
-        # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+        nixpkgs.url = "github:nixos/nixpkgs/release-26.05";
 
         # flake tools (thanks numtide)
         blueprint = {
@@ -21,7 +20,8 @@
         };
     };
 
-    outputs = inputs:
+    outputs =
+        inputs:
         inputs.blueprint {
             inherit inputs;
             prefix = "./.nix/";
