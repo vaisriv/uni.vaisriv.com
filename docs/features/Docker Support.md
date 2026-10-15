@@ -1,7 +1,7 @@
 ---
 title: "Docker Support"
 tags:
-  - feature
+    - feature
 ---
 
 Quartz comes shipped with a Docker image that will allow you to preview your Quartz locally without installing Node.

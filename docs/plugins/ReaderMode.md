@@ -2,7 +2,7 @@
 title: ReaderMode
 description: Distraction-free reading mode toggle.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 new-in-v5: true
 repository: "[quartz-community/reader-mode](https://github.com/quartz-community/reader-mode)"

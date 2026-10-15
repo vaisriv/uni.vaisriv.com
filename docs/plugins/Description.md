@@ -2,7 +2,7 @@
 title: Description
 description: Generates page descriptions for metadata and previews.
 tags:
-  - plugin/transformer
+    - plugin/transformer
 image:
 repository: "[quartz-community/description](https://github.com/quartz-community/description)"
 enabled: true

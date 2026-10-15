@@ -1,8 +1,8 @@
 ---
 title: "What's New in Quartz 5"
 aliases:
-  - "changelog"
-  - "v5"
+    - "changelog"
+    - "v5"
 ---
 
 Quartz 5 is a ground-up rearchitecture of Quartz focused on extensibility, performance, and Obsidian compatibility. If you're coming from v4, see [[migrating|Migrating to Quartz 5]] for the upgrade path.
@@ -30,25 +30,25 @@ Configuration moved from TypeScript (`quartz.config.ts`) to **YAML** (`quartz.co
 
 ```yaml title="quartz.config.yaml"
 configuration:
-  pageTitle: My Digital Garden
-  enableSPA: true
-  enablePopovers: true
-  locale: en-US
-  baseUrl: mysite.github.io
-  theme:
-    typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
-      code: IBM Plex Mono
+    pageTitle: My Digital Garden
+    enableSPA: true
+    enablePopovers: true
+    locale: en-US
+    baseUrl: mysite.github.io
+    theme:
+        typography:
+            header: Schibsted Grotesk
+            body: Source Sans Pro
+            code: IBM Plex Mono
 plugins:
-  - source: github:quartz-community/obsidian-flavored-markdown
-    enabled: true
-    order: 30
-  - source: github:quartz-community/explorer
-    enabled: true
-    layout:
-      position: left
-      priority: 50
+    - source: github:quartz-community/obsidian-flavored-markdown
+      enabled: true
+      order: 30
+    - source: github:quartz-community/explorer
+      enabled: true
+      layout:
+          position: left
+          priority: 50
 ```
 
 Benefits:
@@ -98,14 +98,14 @@ The layout system is now declarative. Plugins declare their position (`left`, `r
 
 ```yaml
 plugins:
-  - source: github:quartz-community/explorer
-    layout:
-      position: left
-      priority: 50
-  - source: github:quartz-community/graph
-    layout:
-      position: right
-      priority: 10
+    - source: github:quartz-community/explorer
+      layout:
+          position: left
+          priority: 50
+    - source: github:quartz-community/graph
+      layout:
+          position: right
+          priority: 10
 ```
 
 Additional features:

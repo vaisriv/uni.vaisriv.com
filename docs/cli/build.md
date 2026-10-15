@@ -1,7 +1,7 @@
 ---
 title: quartz build
 aliases:
-  - build
+    - build
 ---
 
 The `build` command transforms your Markdown content into a static HTML website. It processes your files through the configured plugins and outputs the final site to a directory of your choice.

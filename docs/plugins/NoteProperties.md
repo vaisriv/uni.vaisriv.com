@@ -2,7 +2,7 @@
 title: NoteProperties
 description: Displays frontmatter properties in a collapsible panel.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 new-in-v5: true
 repository: "[quartz-community/note-properties](https://github.com/quartz-community/note-properties)"

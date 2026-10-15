@@ -3,7 +3,7 @@ title: Encrypted Pages Demo
 password: quartz
 unlisted: true
 tags:
-  - plugin/transformer
+    - plugin/transformer
 image:
 ---
 

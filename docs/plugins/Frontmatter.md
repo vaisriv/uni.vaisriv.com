@@ -1,12 +1,12 @@
 ---
 title: Frontmatter
 aliases:
-  - note-properties
-  - Note Properties
+    - note-properties
+    - Note Properties
 description: Parses frontmatter and displays note properties in a collapsible panel.
 tags:
-  - plugin/transformer
-  - plugin/component
+    - plugin/transformer
+    - plugin/component
 publish: true
 enableToc: true
 image:
@@ -40,15 +40,15 @@ This plugin accepts the following configuration options:
 - source: github:quartz-community/note-properties
   enabled: true
   options:
-    includeAll: false
-    includedProperties:
-      - description
-      - tags
-      - aliases
-    excludedProperties: []
-    hidePropertiesView: false
-    delimiters: "---"
-    language: yaml
+      includeAll: false
+      includedProperties:
+          - description
+          - tags
+          - aliases
+      excludedProperties: []
+      hidePropertiesView: false
+      delimiters: "---"
+      language: yaml
 ```
 
 ## Properties panel

@@ -2,7 +2,7 @@
 title: CanvasPage
 description: Renders JSON Canvas files as interactive, pannable pages.
 tags:
-  - plugin/pageType
+    - plugin/pageType
 image: "#7852ee"
 new-in-v5: true
 repository: "[quartz-community/canvas-page](https://github.com/quartz-community/canvas-page)"
@@ -36,9 +36,9 @@ Users can override this frame via `quartz.config.yaml` if needed:
 
 ```yaml title="quartz.config.yaml"
 layout:
-  byPageType:
-    canvas:
-      template: default # Use standard three-column layout instead
+    byPageType:
+        canvas:
+            template: default # Use standard three-column layout instead
 ```
 
 ### Features

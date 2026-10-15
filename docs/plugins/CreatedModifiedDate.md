@@ -2,7 +2,7 @@
 title: CreatedModifiedDate
 description: Determines creation and modification dates from frontmatter, git, or filesystem.
 tags:
-  - plugin/transformer
+    - plugin/transformer
 image:
 repository: "[quartz-community/created-modified-date](https://github.com/quartz-community/created-modified-date)"
 enabled: true

@@ -2,8 +2,8 @@
 title: BasesPage
 description: Renders Obsidian Bases files as database-style views.
 tags:
-  - plugin/pageType
-  - plugin/component
+    - plugin/pageType
+    - plugin/component
 image:
 new-in-v5: true
 repository: "[quartz-community/bases-page](https://github.com/quartz-community/bases-page)"
@@ -54,17 +54,17 @@ This plugin accepts the following configuration options:
 For custom view renderers, use a TS override in `quartz.ts`:
 
 ```ts title="quartz.ts (override)"
-import * as ExternalPlugin from "./.quartz/plugins"
+import * as ExternalPlugin from "./.quartz/plugins";
 
 // Must be placed before loadQuartzConfig()
 ExternalPlugin.BasesPage({
-  defaultViewType: "table",
-  customViews: {
-    myView: ({ entries, view, basesData, total, locale }) => {
-      // return JSX
+    defaultViewType: "table",
+    customViews: {
+        myView: ({ entries, view, basesData, total, locale }) => {
+            // return JSX
+        },
     },
-  },
-})
+});
 ```
 
 ## API

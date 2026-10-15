@@ -1,7 +1,7 @@
 ---
 title: ComponentResources
 tags:
-  - plugin/emitter
+    - plugin/emitter
 image:
 ---
 

@@ -2,7 +2,7 @@
 title: PageTitle
 description: Renders the site title as a home link.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 repository: "[quartz-community/page-title](https://github.com/quartz-community/page-title)"
 enabled: true

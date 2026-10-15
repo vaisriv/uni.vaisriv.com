@@ -1,7 +1,7 @@
 ---
 title: "Installation"
 aliases:
-  - "setting up your GitHub repository"
+    - "setting up your GitHub repository"
 ---
 
 This page walks you through the full Quartz setup: from getting the source code to previewing your site locally, then pushing it to GitHub.
@@ -60,9 +60,9 @@ This will prompt you for:
 
 - A **template** (`default`, `obsidian`, `ttrpg`, `blog`) — pick the one that matches your use case. See [[create#Templates]] for details on each.
 - A **content strategy** — choose how to populate the `content/` folder:
-  - **new**: Start with an empty folder
-  - **copy**: Copy files from an existing folder (e.g. your Obsidian vault)
-  - **symlink**: Link to an existing folder so changes sync automatically
+    - **new**: Start with an empty folder
+    - **copy**: Copy files from an existing folder (e.g. your Obsidian vault)
+    - **symlink**: Link to an existing folder so changes sync automatically
 - A **base URL** — the URL where your site will be deployed (e.g. `mysite.github.io/quartz`). Don't include `https://`.
 - A **link resolution** strategy — how to resolve internal links (`shortest`, `absolute`, or `relative`). Skipped for Obsidian and TTRPG templates.
 

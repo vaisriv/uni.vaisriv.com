@@ -1,7 +1,7 @@
 ---
 title: "Upgrading Quartz"
 aliases:
-  - upgrading
+    - upgrading
 ---
 
 > [!note]
@@ -37,13 +37,13 @@ The `footer` layout slot is now an array of components, consistent with other la
 ```ts title="quartz.ts"
 // Before
 export const layout = await loadQuartzLayout({
-  defaults: { footer: MyFooterComponent },
-})
+    defaults: { footer: MyFooterComponent },
+});
 
 // After
 export const layout = await loadQuartzLayout({
-  defaults: { footer: [MyFooterComponent] },
-})
+    defaults: { footer: [MyFooterComponent] },
+});
 ```
 
 **If you have a custom page frame**, update the `render` function to iterate the footer array:

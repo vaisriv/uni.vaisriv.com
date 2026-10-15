@@ -2,7 +2,7 @@
 title: Footer
 description: Page footer with configurable links.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 repository: "[quartz-community/footer](https://github.com/quartz-community/footer)"
 enabled: true
@@ -26,9 +26,9 @@ This plugin accepts the following configuration options:
 - source: github:quartz-community/footer
   enabled: true
   options:
-    links:
-      GitHub: https://github.com/jackyzha0/quartz
-      Discord Community: https://discord.gg/cRFFHYye7t
+      links:
+          GitHub: https://github.com/jackyzha0/quartz
+          Discord Community: https://discord.gg/cRFFHYye7t
 ```
 
 ## API

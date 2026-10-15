@@ -1,7 +1,7 @@
 ---
 title: LaTeX
 tags:
-  - feature/transformer
+    - feature/transformer
 ---
 
 Quartz uses [Katex](https://katex.org/) by default to typeset both inline and block math expressions at build time.
@@ -73,7 +73,7 @@ For example:
 If you are using the community Latex plugin, you can add `mhchem` support by forking the plugin repository and adding the following import to the top of `src/index.ts` (before all the other imports):
 
 ```ts title="src/index.ts"
-import "katex/contrib/mhchem"
+import "katex/contrib/mhchem";
 ```
 
 ## Customization

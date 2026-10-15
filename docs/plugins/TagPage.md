@@ -2,7 +2,7 @@
 title: TagPage
 description: Generates listing pages for tags.
 tags:
-  - plugin/pageType
+    - plugin/pageType
 image:
 repository: "[quartz-community/tag-page](https://github.com/quartz-community/tag-page)"
 enabled: true

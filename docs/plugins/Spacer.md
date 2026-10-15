@@ -2,7 +2,7 @@
 title: Spacer
 description: Flexible spacer for layout groups.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 new-in-v5: true
 repository: "[quartz-community/spacer](https://github.com/quartz-community/spacer)"

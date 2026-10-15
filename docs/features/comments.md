@@ -1,7 +1,7 @@
 ---
 title: Comments
 tags:
-  - component
+    - component
 ---
 
 Quartz also has the ability to hook into various providers to enable readers to leave comments on your site.
@@ -37,45 +37,48 @@ Finally, in `quartz.config.yaml`, add the comments plugin with the following opt
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/comments
-    enabled: true
-    options:
-      provider: giscus
+    - source: github:quartz-community/comments
+      enabled: true
       options:
-        repo: jackyzha0/quartz
-        repoId: MDEwOlJlcG9zaXRvcnkzODcyMTMyMDg
-        category: Announcements
-        categoryId: DIC_kwDOFxRnmM4B-Xg6
-        lang: en
-    layout:
-      position: afterBody
-      priority: 10
+          provider: giscus
+          options:
+              repo: jackyzha0/quartz
+              repoId: MDEwOlJlcG9zaXRvcnkzODcyMTMyMDg
+              category: Announcements
+              categoryId: DIC_kwDOFxRnmM4B-Xg6
+              lang: en
+      layout:
+          position: afterBody
+          priority: 10
 ```
 
 For the TS override approach:
 
 ```ts title="quartz.ts (override)"
 // If using quartz.ts overrides instead of YAML:
-import { loadQuartzConfig, loadQuartzLayout } from "./quartz/plugins/loader/config-loader"
+import {
+    loadQuartzConfig,
+    loadQuartzLayout,
+} from "./quartz/plugins/loader/config-loader";
 
-const config = await loadQuartzConfig()
-export default config
+const config = await loadQuartzConfig();
+export default config;
 export const layout = await loadQuartzLayout({
-  defaults: {
-    afterBody: [
-      ExternalPlugin.Comments({
-        provider: "giscus",
-        options: {
-          repo: "jackyzha0/quartz",
-          repoId: "MDEwOlJlcG9zaXRvcnkzODcyMTMyMDg",
-          category: "Announcements",
-          categoryId: "DIC_kwDOFxRnmM4B-Xg6",
-          lang: "en",
-        },
-      }),
-    ],
-  },
-})
+    defaults: {
+        afterBody: [
+            ExternalPlugin.Comments({
+                provider: "giscus",
+                options: {
+                    repo: "jackyzha0/quartz",
+                    repoId: "MDEwOlJlcG9zaXRvcnkzODcyMTMyMDg",
+                    category: "Announcements",
+                    categoryId: "DIC_kwDOFxRnmM4B-Xg6",
+                    lang: "en",
+                },
+            }),
+        ],
+    },
+});
 ```
 
 > [!note]
@@ -87,46 +90,52 @@ Quartz also exposes a few of the other Giscus options as well and you can provid
 
 ```ts
 type Options = {
-  provider: "giscus"
-  options: {
-    repo: `${string}/${string}`
-    repoId: string
-    category: string
-    categoryId: string
+    provider: "giscus";
+    options: {
+        repo: `${string}/${string}`;
+        repoId: string;
+        category: string;
+        categoryId: string;
 
-    // Url to folder with custom themes
-    // defaults to 'https://${cfg.baseUrl}/static/giscus'
-    themeUrl?: string
+        // Url to folder with custom themes
+        // defaults to 'https://${cfg.baseUrl}/static/giscus'
+        themeUrl?: string;
 
-    // filename for light theme .css file
-    // defaults to 'light'
-    lightTheme?: string
+        // filename for light theme .css file
+        // defaults to 'light'
+        lightTheme?: string;
 
-    // filename for dark theme .css file
-    // defaults to 'dark'
-    darkTheme?: string
+        // filename for dark theme .css file
+        // defaults to 'dark'
+        darkTheme?: string;
 
-    // how to map pages -> discussions
-    // defaults to 'url'
-    mapping?: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
+        // how to map pages -> discussions
+        // defaults to 'url'
+        mapping?:
+            | "url"
+            | "title"
+            | "og:title"
+            | "specific"
+            | "number"
+            | "pathname";
 
-    // use strict title matching
-    // defaults to true
-    strict?: boolean
+        // use strict title matching
+        // defaults to true
+        strict?: boolean;
 
-    // whether to enable reactions for the main post
-    // defaults to true
-    reactionsEnabled?: boolean
+        // whether to enable reactions for the main post
+        // defaults to true
+        reactionsEnabled?: boolean;
 
-    // where to put the comment input box relative to the comments
-    // defaults to 'bottom'
-    inputPosition?: "top" | "bottom"
+        // where to put the comment input box relative to the comments
+        // defaults to 'bottom'
+        inputPosition?: "top" | "bottom";
 
-    // set your preference language here
-    // defaults to 'en'
-    lang?: string
-  }
-}
+        // set your preference language here
+        // defaults to 'en'
+        lang?: string;
+    };
+};
 ```
 
 #### Custom CSS theme
@@ -137,37 +146,40 @@ For example, if you have a light theme `light-theme.css`, a dark theme `dark-the
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/comments
-    enabled: true
-    options:
-      provider: giscus
+    - source: github:quartz-community/comments
+      enabled: true
       options:
-        # Other options...
-        themeUrl: "https://example.com/static/giscus" # corresponds to quartz/static/giscus/
-        lightTheme: light-theme # corresponds to light-theme.css in quartz/static/giscus/
-        darkTheme: dark-theme # corresponds to dark-theme.css in quartz/static/giscus/
+          provider: giscus
+          options:
+              # Other options...
+              themeUrl: "https://example.com/static/giscus" # corresponds to quartz/static/giscus/
+              lightTheme: light-theme # corresponds to light-theme.css in quartz/static/giscus/
+              darkTheme: dark-theme # corresponds to dark-theme.css in quartz/static/giscus/
 ```
 
 ```ts title="quartz.ts (override)"
-import { loadQuartzConfig, loadQuartzLayout } from "./quartz/plugins/loader/config-loader"
+import {
+    loadQuartzConfig,
+    loadQuartzLayout,
+} from "./quartz/plugins/loader/config-loader";
 
-const config = await loadQuartzConfig()
-export default config
+const config = await loadQuartzConfig();
+export default config;
 export const layout = await loadQuartzLayout({
-  defaults: {
-    afterBody: [
-      ExternalPlugin.Comments({
-        provider: "giscus",
-        options: {
-          // Other options...
-          themeUrl: "https://example.com/static/giscus",
-          lightTheme: "light-theme",
-          darkTheme: "dark-theme",
-        },
-      }),
-    ],
-  },
-})
+    defaults: {
+        afterBody: [
+            ExternalPlugin.Comments({
+                provider: "giscus",
+                options: {
+                    // Other options...
+                    themeUrl: "https://example.com/static/giscus",
+                    lightTheme: "light-theme",
+                    darkTheme: "dark-theme",
+                },
+            }),
+        ],
+    },
+});
 ```
 
 #### Conditionally display comments

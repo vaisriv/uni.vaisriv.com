@@ -13,14 +13,14 @@ Each page is composed of multiple different sections which contain `QuartzCompon
 
 ```typescript title="quartz/cfg.ts"
 export interface FullPageLayout {
-  head: QuartzComponent // single component
-  header: QuartzComponent[] // laid out horizontally
-  beforeBody: QuartzComponent[] // laid out vertically
-  pageBody: QuartzComponent // single component
-  afterBody: QuartzComponent[] // laid out vertically
-  left: QuartzComponent[] // vertical on desktop and tablet, horizontal on mobile
-  right: QuartzComponent[] // vertical on desktop, horizontal on tablet and mobile
-  footer: QuartzComponent[] // laid out vertically
+    head: QuartzComponent; // single component
+    header: QuartzComponent[]; // laid out horizontally
+    beforeBody: QuartzComponent[]; // laid out vertically
+    pageBody: QuartzComponent; // single component
+    afterBody: QuartzComponent[]; // laid out vertically
+    left: QuartzComponent[]; // vertical on desktop and tablet, horizontal on mobile
+    right: QuartzComponent[]; // vertical on desktop, horizontal on tablet and mobile
+    footer: QuartzComponent[]; // laid out vertically
 }
 ```
 
@@ -42,78 +42,78 @@ Layout components are configured in the `layout` section of `quartz.config.yaml`
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/explorer
-    enabled: true
-    layout:
-      position: left
-      priority: 50
-  - source: github:quartz-community/graph
-    enabled: true
-    layout:
-      position: right
-      priority: 10
-  - source: github:quartz-community/search
-    enabled: true
-    layout:
-      position: left
-      priority: 20
-  - source: github:quartz-community/backlinks
-    enabled: true
-    layout:
-      position: right
-      priority: 30
-  - source: github:quartz-community/article-title
-    enabled: true
-    layout:
-      position: beforeBody
-      priority: 10
-  - source: github:quartz-community/content-meta
-    enabled: true
-    layout:
-      position: beforeBody
-      priority: 20
-  - source: github:quartz-community/tag-list
-    enabled: true
-    layout:
-      position: beforeBody
-      priority: 30
-  - source: github:quartz-community/darkmode
-    enabled: true
-    layout:
-      position: header
-      priority: 10
-  - source: github:quartz-community/footer
-    enabled: true
-    options:
-      links:
-        GitHub: https://github.com/jackyzha0/quartz
-        Discord Community: https://discord.gg/cRFFHYye7t
-    layout:
-      position: footer
-      priority: 50
+    - source: github:quartz-community/explorer
+      enabled: true
+      layout:
+          position: left
+          priority: 50
+    - source: github:quartz-community/graph
+      enabled: true
+      layout:
+          position: right
+          priority: 10
+    - source: github:quartz-community/search
+      enabled: true
+      layout:
+          position: left
+          priority: 20
+    - source: github:quartz-community/backlinks
+      enabled: true
+      layout:
+          position: right
+          priority: 30
+    - source: github:quartz-community/article-title
+      enabled: true
+      layout:
+          position: beforeBody
+          priority: 10
+    - source: github:quartz-community/content-meta
+      enabled: true
+      layout:
+          position: beforeBody
+          priority: 20
+    - source: github:quartz-community/tag-list
+      enabled: true
+      layout:
+          position: beforeBody
+          priority: 30
+    - source: github:quartz-community/darkmode
+      enabled: true
+      layout:
+          position: header
+          priority: 10
+    - source: github:quartz-community/footer
+      enabled: true
+      options:
+          links:
+              GitHub: https://github.com/jackyzha0/quartz
+              Discord Community: https://discord.gg/cRFFHYye7t
+      layout:
+          position: footer
+          priority: 50
 
 layout:
-  groups:
-    toolbar:
-      direction: row
-      gap: 0.5rem
-  byPageType:
-    content: {}
-    folder:
-      exclude:
-        - reader-mode
-      positions:
-        right: []
-    tag:
-      exclude:
-        - reader-mode
-      positions:
-        right: []
-    "404":
-      positions:
-        beforeBody: []
-        left: []
-        right: []
+    groups:
+        toolbar:
+            direction: row
+            gap: 0.5rem
+    byPageType:
+        content: {}
+        folder:
+            exclude:
+                - reader-mode
+            positions:
+                right: []
+        tag:
+            exclude:
+                - reader-mode
+            positions:
+                right: []
+        "404":
+            positions:
+                beforeBody: []
+                left: []
+                right: []
 ```
 
 ### Conditional Rendering
@@ -122,12 +122,12 @@ Plugins can specify a `condition` in their layout block to control when they app
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/breadcrumbs
-    enabled: true
-    layout:
-      position: beforeBody
-      priority: 5
-      condition: not-index
+    - source: github:quartz-community/breadcrumbs
+      enabled: true
+      layout:
+          position: beforeBody
+          priority: 5
+          condition: not-index
 ```
 
 Available conditions:
@@ -142,23 +142,26 @@ See [[layout-components]] for more details on conditional rendering and display 
 For advanced layout overrides using TypeScript (e.g. custom component wrappers or conditional logic), you can use the TS override in `quartz.ts`:
 
 ```ts title="quartz.ts"
-import { loadQuartzConfig, loadQuartzLayout } from "./quartz/plugins/loader/config-loader"
+import {
+    loadQuartzConfig,
+    loadQuartzLayout,
+} from "./quartz/plugins/loader/config-loader";
 
-const config = await loadQuartzConfig()
-export default config
+const config = await loadQuartzConfig();
+export default config;
 export const layout = await loadQuartzLayout({
-  defaults: {
-    // override default layout for all page types
-  },
-  byPageType: {
-    content: {
-      // override layout for content pages only
+    defaults: {
+        // override default layout for all page types
     },
-    folder: {
-      // override layout for folder pages only
+    byPageType: {
+        content: {
+            // override layout for content pages only
+        },
+        folder: {
+            // override layout for folder pages only
+        },
     },
-  },
-})
+});
 ```
 
 Fields defined in `defaults` can be overridden by specific entries in `byPageType`.
@@ -194,9 +197,9 @@ For example, to override canvas pages to use the minimal frame:
 
 ```yaml title="quartz.config.yaml"
 layout:
-  byPageType:
-    canvas:
-      template: minimal
+    byPageType:
+        canvas:
+            template: minimal
 ```
 
 #### Custom frames
@@ -215,7 +218,7 @@ Frames are applied as a `data-frame` attribute on the `.page` element, which you
 
 ```scss
 .page[data-frame="my-frame"] > #quartz-body {
-  /* custom grid layout */
+    /* custom grid layout */
 }
 ```
 
@@ -233,8 +236,8 @@ The breakpoints for layouts can be configured in `variables.scss`.
 
 ```scss
 $breakpoints: (
-  mobile: 800px,
-  desktop: 1200px,
+    mobile: 800px,
+    desktop: 1200px,
 );
 ```
 

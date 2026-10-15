@@ -2,7 +2,7 @@
 title: Latex
 description: Renders LaTeX math expressions via KaTeX or Typst.
 tags:
-  - plugin/transformer
+    - plugin/transformer
 image:
 repository: "[quartz-community/latex](https://github.com/quartz-community/latex)"
 enabled: true

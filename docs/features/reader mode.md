@@ -1,7 +1,7 @@
 ---
 title: Reader Mode
 tags:
-  - component
+    - component
 ---
 
 Reader Mode is a feature that allows users to focus on the content by hiding the sidebars and other UI elements. When enabled, it provides a clean, distraction-free reading experience.
@@ -15,8 +15,8 @@ Reader Mode is enabled by default. To disable it, set `enabled: false` in your `
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/reader-mode
-    enabled: false
+    - source: github:quartz-community/reader-mode
+      enabled: false
 ```
 
 Or remove the plugin entirely:
@@ -49,9 +49,9 @@ Example customization in your custom CSS:
 
 ```scss
 .readermode {
-  // Customize the button
-  svg {
-    stroke: var(--custom-color);
-  }
+    // Customize the button
+    svg {
+        stroke: var(--custom-color);
+    }
 }
 ```

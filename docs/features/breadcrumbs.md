@@ -1,7 +1,7 @@
 ---
 title: "Breadcrumbs"
 tags:
-  - component
+    - component
 ---
 
 Breadcrumbs provide a way to navigate a hierarchy of pages within your site using a list of its parent folders.
@@ -19,16 +19,16 @@ For example, here's what the default configuration looks like:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/breadcrumbs
-    enabled: true
-    options:
-      spacerSymbol: "❯"
-      rootName: Home
-      resolveFrontmatterTitle: true
-      showCurrentPage: true
-    layout:
-      position: beforeBody
-      priority: 5
+    - source: github:quartz-community/breadcrumbs
+      enabled: true
+      options:
+          spacerSymbol: "❯"
+          rootName: Home
+          resolveFrontmatterTitle: true
+          showCurrentPage: true
+      layout:
+          position: beforeBody
+          priority: 5
 ```
 
 For the TS override approach:
@@ -36,11 +36,11 @@ For the TS override approach:
 ```ts title="quartz.ts (override)"
 // Must be placed before loadQuartzConfig()
 ExternalPlugin.Breadcrumbs({
-  spacerSymbol: "❯",
-  rootName: "Home",
-  resolveFrontmatterTitle: true,
-  showCurrentPage: true,
-})
+    spacerSymbol: "❯",
+    rootName: "Home",
+    resolveFrontmatterTitle: true,
+    showCurrentPage: true,
+});
 ```
 
 When passing in your own options, you can omit any or all of these fields if you'd like to keep the default value for that field.

@@ -1,7 +1,7 @@
 ---
 title: NotFoundPage
 tags:
-  - plugin/pageType
+    - plugin/pageType
 image:
 ---
 

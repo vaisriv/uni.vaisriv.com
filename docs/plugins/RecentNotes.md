@@ -2,7 +2,7 @@
 title: RecentNotes
 description: Displays a list of recently modified notes.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 repository: "[quartz-community/recent-notes](https://github.com/quartz-community/recent-notes)"
 enabled: false
@@ -33,10 +33,10 @@ This plugin accepts the following configuration options:
 - source: github:quartz-community/recent-notes
   enabled: true
   options:
-    limit: 3
-    showTags: true
-    hideTagPages: false
-    hideFolderPages: false
+      limit: 3
+      showTags: true
+      hideTagPages: false
+      hideFolderPages: false
 ```
 
 ## API

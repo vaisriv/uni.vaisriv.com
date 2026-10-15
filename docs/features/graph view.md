@@ -1,7 +1,7 @@
 ---
 title: "Graph View"
 tags:
-  - component
+    - component
 ---
 
 Quartz features a graph-view that can show both a local graph view and a global graph view.
@@ -24,11 +24,11 @@ Then add it to your `quartz.config.yaml`:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/graph
-    enabled: true
-    layout:
-      position: right
-      priority: 10
+    - source: github:quartz-community/graph
+      enabled: true
+      layout:
+          position: right
+          priority: 10
 ```
 
 ## Features
@@ -48,39 +48,39 @@ For example, here's what the default configuration looks like:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/graph
-    enabled: true
-    options:
-      localGraph:
-        drag: true
-        zoom: true
-        depth: 1
-        scale: 1.1
-        repelForce: 0.5
-        centerForce: 0.3
-        linkDistance: 30
-        fontSize: 0.6
-        opacityScale: 1
-        removeTags: []
-        showTags: true
-        enableRadial: false
-      globalGraph:
-        drag: true
-        zoom: true
-        depth: -1
-        scale: 0.9
-        repelForce: 0.5
-        centerForce: 0.3
-        linkDistance: 30
-        fontSize: 0.6
-        opacityScale: 1
-        removeTags: []
-        showTags: true
-        focusOnHover: true
-        enableRadial: true
-    layout:
-      position: right
-      priority: 10
+    - source: github:quartz-community/graph
+      enabled: true
+      options:
+          localGraph:
+              drag: true
+              zoom: true
+              depth: 1
+              scale: 1.1
+              repelForce: 0.5
+              centerForce: 0.3
+              linkDistance: 30
+              fontSize: 0.6
+              opacityScale: 1
+              removeTags: []
+              showTags: true
+              enableRadial: false
+          globalGraph:
+              drag: true
+              zoom: true
+              depth: -1
+              scale: 0.9
+              repelForce: 0.5
+              centerForce: 0.3
+              linkDistance: 30
+              fontSize: 0.6
+              opacityScale: 1
+              removeTags: []
+              showTags: true
+              focusOnHover: true
+              enableRadial: true
+      layout:
+          position: right
+          priority: 10
 ```
 
 When passing in your own options, you can omit any or all of these fields if you'd like to keep the default value for that field.

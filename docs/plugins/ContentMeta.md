@@ -2,7 +2,7 @@
 title: ContentMeta
 description: Displays creation date and reading time.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 repository: "[quartz-community/content-meta](https://github.com/quartz-community/content-meta)"
 enabled: true
@@ -27,8 +27,8 @@ This plugin accepts the following configuration options:
 - source: github:quartz-community/content-meta
   enabled: true
   options:
-    showReadingTime: true
-    showComma: true
+      showReadingTime: true
+      showComma: true
 ```
 
 ## API

@@ -2,8 +2,8 @@
 title: Fonts
 description: Fine-grained font control with per-heading support, Google Fonts integration, and theme font discovery.
 tags:
-  - plugin/transformer
-  - plugin/emitter
+    - plugin/transformer
+    - plugin/emitter
 image:
 repository: "[quartz-community/fonts](https://github.com/quartz-community/fonts)"
 enabled: true
@@ -60,8 +60,8 @@ This plugin accepts the following configuration options:
 - source: github:quartz-community/fonts
   enabled: true
   options:
-    useThemeFonts: true
-    fontOrigin: googleFonts
+      useThemeFonts: true
+      fontOrigin: googleFonts
 ```
 
 ### Font resolution
@@ -110,68 +110,68 @@ Fonts works standalone. Without a theme, it falls back to Obsidian's default sys
 - source: github:quartz-community/fonts
   enabled: true
   options:
-    header: '"Playfair Display", serif'
+      header: '"Playfair Display", serif'
 
 # Full control with per-heading fonts
 - source: github:quartz-community/fonts
   enabled: true
   options:
-    body: '"Inter", sans-serif'
-    header: '"Playfair Display", serif'
-    code: '"JetBrains Mono", monospace'
-    h1: '"Playfair Display", serif'
-    h2: '"Lora", serif'
+      body: '"Inter", sans-serif'
+      header: '"Playfair Display", serif'
+      code: '"JetBrains Mono", monospace'
+      h1: '"Playfair Display", serif'
+      h2: '"Lora", serif'
 
 # Load from Google Fonts automatically
 - source: github:quartz-community/fonts
   enabled: true
   options:
-    fontOrigin: googleFonts
-    body: Inter
-    header: Playfair Display
-    code: JetBrains Mono
+      fontOrigin: googleFonts
+      body: Inter
+      header: Playfair Display
+      code: JetBrains Mono
 
 # Google Fonts with weight/italic control
 - source: github:quartz-community/fonts
   enabled: true
   options:
-    fontOrigin: googleFonts
-    body:
-      name: Inter
-      weights: [400, 600, 700]
-      includeItalic: true
-    header:
-      name: Playfair Display
-      weights: [400, 700]
-    code:
-      name: JetBrains Mono
-      weights: [400]
+      fontOrigin: googleFonts
+      body:
+          name: Inter
+          weights: [400, 600, 700]
+          includeItalic: true
+      header:
+          name: Playfair Display
+          weights: [400, 700]
+      code:
+          name: JetBrains Mono
+          weights: [400]
 
 # Custom title font (separate from header)
 - source: github:quartz-community/fonts
   enabled: true
   options:
-    fontOrigin: googleFonts
-    title: Abril Fatface
-    header: Playfair Display
-    body: Inter
-    code: JetBrains Mono
+      fontOrigin: googleFonts
+      title: Abril Fatface
+      header: Playfair Display
+      body: Inter
+      code: JetBrains Mono
 
 # Self-hosted fonts (downloaded at build time, no external requests)
 - source: github:quartz-community/fonts
   enabled: true
   options:
-    fontOrigin: selfHosted
-    body: Inter
-    header: Playfair Display
-    code: JetBrains Mono
+      fontOrigin: selfHosted
+      body: Inter
+      header: Playfair Display
+      code: JetBrains Mono
 
 # Ignore theme fonts entirely
 - source: github:quartz-community/fonts
   enabled: true
   options:
-    useThemeFonts: false
-    body: '"Inter", sans-serif'
+      useThemeFonts: false
+      body: '"Inter", sans-serif'
 ```
 
 ## Self-Hosted Fonts
@@ -190,16 +190,16 @@ At build time, the plugin:
 
 ```yaml title="quartz.config.yaml"
 configuration:
-  baseUrl: "example.com"
+    baseUrl: "example.com"
 
 plugins:
-  - source: github:quartz-community/fonts
-    enabled: true
-    options:
-      fontOrigin: selfHosted
-      body: Inter
-      header: Playfair Display
-      code: JetBrains Mono
+    - source: github:quartz-community/fonts
+      enabled: true
+      options:
+          fontOrigin: selfHosted
+          body: Inter
+          header: Playfair Display
+          code: JetBrains Mono
 ```
 
 ## Google Fonts Validation

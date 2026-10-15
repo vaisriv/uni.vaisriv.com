@@ -1,7 +1,7 @@
 ---
 title: "SPA Routing"
 tags:
-  - feature
+    - feature
 ---
 
 Single-page-app style rendering. This prevents flashes of unstyled content and improves the smoothness of Quartz.

@@ -2,7 +2,7 @@
 title: ArticleTitle
 description: Renders the article title as an h1 heading.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 repository: "[quartz-community/article-title](https://github.com/quartz-community/article-title)"
 enabled: true

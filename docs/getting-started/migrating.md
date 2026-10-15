@@ -1,8 +1,8 @@
 ---
 title: "Migrating to Quartz 5"
 aliases:
-  - "migrating from Quartz 3"
-  - "migrating from Quartz 4"
+    - "migrating from Quartz 3"
+    - "migrating from Quartz 4"
 ---
 
 This guide covers migrating to Quartz 5 from previous versions. If you're already on Quartz 5 and want to update to the latest version, see [[upgrading|Upgrading Quartz]] instead.
@@ -99,10 +99,10 @@ No manual configuration is needed — the plugin is enabled by default and the c
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/alias-redirects
-    enabled: true
-    options:
-      enableCaseRedirects: false
+    - source: github:quartz-community/alias-redirects
+      enabled: true
+      options:
+          enableCaseRedirects: false
 ```
 
 > [!tip] Hosting on Netlify?
@@ -160,18 +160,18 @@ Here's the recommended pattern, based on the project's own GitHub Actions:
 - name: Cache dependencies
   uses: actions/cache@v5
   with:
-    path: ~/.npm
-    key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-    restore-keys: |
-      ${{ runner.os }}-node-
+      path: ~/.npm
+      key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      restore-keys: |
+          ${{ runner.os }}-node-
 
 - name: Cache Quartz plugins
   uses: actions/cache@v5
   with:
-    path: .quartz/plugins
-    key: ${{ runner.os }}-plugins-${{ hashFiles('quartz.lock.json') }}
-    restore-keys: |
-      ${{ runner.os }}-plugins-
+      path: .quartz/plugins
+      key: ${{ runner.os }}-plugins-${{ hashFiles('quartz.lock.json') }}
+      restore-keys: |
+          ${{ runner.os }}-plugins-
 
 - run: npm ci
 
@@ -223,6 +223,6 @@ If you're coming from Quartz 3 (the Hugo-based version), follow the same steps a
 - Update your deploy scripts — see the [[hosting]] guide.
 - Ensure your default branch on GitHub is updated to `v5`.
 - [[folder and tag listings|Folder and tag listings]] have changed:
-  - Folder descriptions go under `content/<folder-name>/index.md`
-  - Tag descriptions go under `content/tags/<tag-name>.md`
+    - Folder descriptions go under `content/<folder-name>/index.md`
+    - Tag descriptions go under `content/tags/<tag-name>.md`
 - Custom CSS may need updates if you depended on specific HTML hierarchy or class names from Quartz 3.

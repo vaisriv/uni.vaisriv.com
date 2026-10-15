@@ -2,7 +2,7 @@
 title: Explorer
 description: File tree explorer sidebar.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 repository: "[quartz-community/explorer](https://github.com/quartz-community/explorer)"
 enabled: true
@@ -40,24 +40,24 @@ This plugin accepts the following configuration options:
 - source: github:quartz-community/explorer
   enabled: true
   options:
-    title: Explorer
-    folderClickBehavior: link
-    folderDefaultState: collapsed
-    useSavedState: true
+      title: Explorer
+      folderClickBehavior: link
+      folderDefaultState: collapsed
+      useSavedState: true
 ```
 
 ### TS override example
 
 ```ts title="quartz.ts"
-import * as ExternalPlugin from "./.quartz/plugins"
+import * as ExternalPlugin from "./.quartz/plugins";
 
 // Must be placed before loadQuartzConfig()
 ExternalPlugin.Explorer({
-  mapFn: (node) => {
-    node.displayName = node.displayName.toUpperCase()
-    return node
-  },
-})
+    mapFn: (node) => {
+        node.displayName = node.displayName.toUpperCase();
+        return node;
+    },
+});
 ```
 
 See [[features/explorer#Advanced customization]] for more examples.

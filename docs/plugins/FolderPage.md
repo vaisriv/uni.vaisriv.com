@@ -2,7 +2,7 @@
 title: FolderPage
 description: Generates listing pages for folders.
 tags:
-  - plugin/pageType
+    - plugin/pageType
 image:
 repository: "[quartz-community/folder-page](https://github.com/quartz-community/folder-page)"
 enabled: true

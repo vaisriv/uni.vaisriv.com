@@ -231,10 +231,10 @@ Some plugins live in a subdirectory of a larger repository rather than at the ro
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source:
-      repo: "https://github.com/username/monorepo.git"
-      subdir: plugin
-    enabled: true
+    - source:
+          repo: "https://github.com/username/monorepo.git"
+          subdir: plugin
+      enabled: true
 ```
 
 This tells Quartz to clone the full repository but install only the contents of the specified subdirectory.
@@ -243,12 +243,12 @@ You can combine `subdir` with `ref` to pin a branch or tag, and `name` to overri
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source:
-      repo: "https://github.com/username/monorepo.git"
-      subdir: packages/my-plugin
-      ref: v2.0
-      name: my-plugin
-    enabled: true
+    - source:
+          repo: "https://github.com/username/monorepo.git"
+          subdir: packages/my-plugin
+          ref: v2.0
+          name: my-plugin
+      enabled: true
 ```
 
 See [[configuration#Advanced Source Options|Advanced Source Options]] for the full reference on object source fields.

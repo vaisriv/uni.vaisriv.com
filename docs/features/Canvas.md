@@ -1,7 +1,7 @@
 ---
 title: Canvas Support
 tags:
-  - component
+    - component
 ---
 
 Quartz supports rendering [JSON Canvas](https://jsoncanvas.org) (`.canvas`) files as interactive, pannable and zoomable canvas pages. This brings your Obsidian canvas files to the web, preserving text nodes, file references, link nodes, group nodes, and edges with full visual fidelity.

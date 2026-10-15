@@ -2,7 +2,7 @@
 title: UnlistedPages
 description: Hides pages from navigation and indexes while still publishing them.
 tags:
-  - plugin/transformer
+    - plugin/transformer
 image:
 new-in-v5: true
 repository: "[quartz-community/unlisted-pages](https://github.com/quartz-community/unlisted-pages)"

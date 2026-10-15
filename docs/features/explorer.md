@@ -1,7 +1,7 @@
 ---
 title: "Explorer"
 tags:
-  - component
+    - component
 ---
 
 Quartz features an explorer that allows you to navigate all files and folders on your site. It supports nested folders and is highly customizable.
@@ -21,11 +21,11 @@ Then add it to your `quartz.config.yaml`:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/explorer
-    enabled: true
-    layout:
-      position: left
-      priority: 50
+    - source: github:quartz-community/explorer
+      enabled: true
+      layout:
+          position: left
+          priority: 50
 ```
 
 ## Features
@@ -47,41 +47,44 @@ For example, here's what the default configuration looks like:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/explorer
-    enabled: true
-    options:
-      title: Explorer
-      folderClickBehavior: collapse # "link" to navigate or "collapse" to toggle
-      folderDefaultState: collapsed # "collapsed" or "open"
-      useSavedState: true
-    layout:
-      position: left
-      priority: 50
+    - source: github:quartz-community/explorer
+      enabled: true
+      options:
+          title: Explorer
+          folderClickBehavior: collapse # "link" to navigate or "collapse" to toggle
+          folderDefaultState: collapsed # "collapsed" or "open"
+          useSavedState: true
+      layout:
+          position: left
+          priority: 50
 ```
 
 For advanced options like custom sort, filter, and map functions, use the TS override in `quartz.ts`:
 
 ```ts title="quartz.ts"
-import { loadQuartzConfig, loadQuartzLayout } from "./quartz/plugins/loader/config-loader"
-import * as ExternalPlugin from "./.quartz/plugins"
+import {
+    loadQuartzConfig,
+    loadQuartzLayout,
+} from "./quartz/plugins/loader/config-loader";
+import * as ExternalPlugin from "./.quartz/plugins";
 
 // Advanced: pass callback functions that can't be expressed in YAML
 ExternalPlugin.Explorer({
-  sortFn: (a, b) => {
-    /* ... */
-  },
-  filterFn: (node) => {
-    /* ... */
-  },
-  mapFn: (node) => {
-    /* ... */
-  },
-  order: ["filter", "map", "sort"],
-})
+    sortFn: (a, b) => {
+        /* ... */
+    },
+    filterFn: (node) => {
+        /* ... */
+    },
+    mapFn: (node) => {
+        /* ... */
+    },
+    order: ["filter", "map", "sort"],
+});
 
-const config = await loadQuartzConfig()
-export default config
-export const layout = await loadQuartzLayout()
+const config = await loadQuartzConfig();
+export default config;
+export const layout = await loadQuartzLayout();
 ```
 
 > [!info] How overrides work
@@ -99,7 +102,7 @@ When passing in your own options, you can omit any or all of these fields if you
 Want to customize it even more?
 
 - Removing explorer: remove the `explorer` entry from `quartz.config.yaml` or set `enabled: false`
-  - (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
+    - (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
 - Changing `sort`, `filter` and `map` behavior: explained in [[#Advanced customization]]
 
 ## Advanced customization
@@ -109,20 +112,20 @@ All functions you can pass work with the `FileTrieNode` class, which has the fol
 
 ```ts title="@quartz-community/explorer"
 class FileTrieNode {
-  isFolder: boolean
-  children: Array<FileTrieNode>
-  data: ContentDetails | null
+    isFolder: boolean;
+    children: Array<FileTrieNode>;
+    data: ContentDetails | null;
 }
 ```
 
 ```ts
 export type ContentDetails = {
-  slug: FullSlug
-  title: string
-  links: SimpleSlug[]
-  tags: string[]
-  content: string
-}
+    slug: FullSlug;
+    title: string;
+    links: SimpleSlug[];
+    tags: string[];
+    content: string;
+};
 ```
 
 Every function you can pass is optional. By default, only a `sort` function will be used:
@@ -130,21 +133,21 @@ Every function you can pass is optional. By default, only a `sort` function will
 ```ts title="Default sort function"
 // Sort order: folders first, then files. Sort folders and files alphabetically
 ExternalPlugin.Explorer({
-  sortFn: (a, b) => {
-    if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
-      return a.displayName.localeCompare(b.displayName, undefined, {
-        numeric: true,
-        sensitivity: "base",
-      })
-    }
+    sortFn: (a, b) => {
+        if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
+            return a.displayName.localeCompare(b.displayName, undefined, {
+                numeric: true,
+                sensitivity: "base",
+            });
+        }
 
-    if (!a.isFolder && b.isFolder) {
-      return 1
-    } else {
-      return -1
-    }
-  },
-})
+        if (!a.isFolder && b.isFolder) {
+            return 1;
+        } else {
+            return -1;
+        }
+    },
+});
 ```
 
 ---
@@ -156,9 +159,9 @@ For more information on how to use `sort`, `filter` and `map`, you can check [Ar
 Type definitions look like this:
 
 ```ts
-type SortFn = (a: FileTrieNode, b: FileTrieNode) => number
-type FilterFn = (node: FileTrieNode) => boolean
-type MapFn = (node: FileTrieNode) => void
+type SortFn = (a: FileTrieNode, b: FileTrieNode) => number;
+type FilterFn = (node: FileTrieNode) => boolean;
+type MapFn = (node: FileTrieNode) => void;
 ```
 
 ## Basic examples
@@ -171,22 +174,22 @@ Using this example, the explorer will alphabetically sort everything.
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/explorer
-    enabled: true
-    options:
-      # Simple options go in YAML
-      title: Explorer
-      folderDefaultState: collapsed
+    - source: github:quartz-community/explorer
+      enabled: true
+      options:
+          # Simple options go in YAML
+          title: Explorer
+          folderDefaultState: collapsed
 ```
 
 Custom sort functions require the TS override:
 
 ```ts title="quartz.ts (override)"
 ExternalPlugin.Explorer({
-  sortFn: (a, b) => {
-    return a.displayName.localeCompare(b.displayName)
-  },
-})
+    sortFn: (a, b) => {
+        return a.displayName.localeCompare(b.displayName);
+    },
+});
 ```
 
 ### Change display names (`map`)
@@ -195,11 +198,11 @@ Using this example, the display names of all `FileNodes` (folders + files) will 
 
 ```ts title="quartz.ts (override)"
 ExternalPlugin.Explorer({
-  mapFn: (node) => {
-    node.displayName = node.displayName.toUpperCase()
-    return node
-  },
-})
+    mapFn: (node) => {
+        node.displayName = node.displayName.toUpperCase();
+        return node;
+    },
+});
 ```
 
 > [!note]
@@ -212,16 +215,16 @@ Note that this example filters on the title but you can also do it via slug or a
 
 ```ts title="quartz.ts (override)"
 ExternalPlugin.Explorer({
-  filterFn: (node) => {
-    // set containing names of everything you want to filter out
-    const omit = new Set(["authoring content", "tags", "advanced"])
+    filterFn: (node) => {
+        // set containing names of everything you want to filter out
+        const omit = new Set(["authoring content", "tags", "advanced"]);
 
-    // can also use node.slug or by anything on node.data
-    // note that node.data is only present for files that exist on disk
-    // (e.g. implicit folder nodes that have no associated index.md)
-    return !omit.has(node.displayName.toLowerCase())
-  },
-})
+        // can also use node.slug or by anything on node.data
+        // note that node.data is only present for files that exist on disk
+        // (e.g. implicit folder nodes that have no associated index.md)
+        return !omit.has(node.displayName.toLowerCase());
+    },
+});
 ```
 
 ### Remove files by tag
@@ -230,11 +233,11 @@ You can access the tags of a file by `node.data.tags`.
 
 ```ts title="quartz.ts (override)"
 ExternalPlugin.Explorer({
-  filterFn: (node) => {
-    // exclude files with the tag "explorerexclude"
-    return node.data?.tags?.includes("explorerexclude") !== true
-  },
-})
+    filterFn: (node) => {
+        // exclude files with the tag "explorerexclude"
+        return node.data?.tags?.includes("explorerexclude") !== true;
+    },
+});
 ```
 
 ### Show every element in explorer
@@ -244,8 +247,8 @@ To override the default filter function, you can set the filter function to `und
 
 ```ts title="quartz.ts (override)"
 ExternalPlugin.Explorer({
-  filterFn: undefined, // apply no filter function, every file and folder will visible
-})
+    filterFn: undefined, // apply no filter function, every file and folder will visible
+});
 ```
 
 ## Advanced examples
@@ -256,25 +259,25 @@ ExternalPlugin.Explorer({
 > and passing it in.
 >
 > ```ts title="quartz.ts"
-> import * as ExternalPlugin from "./.quartz/plugins"
-> import type { ExplorerOptions } from "./.quartz/plugins"
+> import * as ExternalPlugin from "./.quartz/plugins";
+> import type { ExplorerOptions } from "./.quartz/plugins";
 >
 > const mapFn: ExplorerOptions["mapFn"] = (node) => {
->   // implement your function here
-> }
+>     // implement your function here
+> };
 > const filterFn: ExplorerOptions["filterFn"] = (node) => {
->   // implement your function here
-> }
+>     // implement your function here
+> };
 > const sortFn: ExplorerOptions["sortFn"] = (a, b) => {
->   // implement your function here
-> }
+>     // implement your function here
+> };
 >
 > ExternalPlugin.Explorer({
->   // ... your other options
->   mapFn,
->   filterFn,
->   sortFn,
-> })
+>     // ... your other options
+>     mapFn,
+>     filterFn,
+>     sortFn,
+> });
 > ```
 
 ### Add emoji prefix
@@ -283,12 +286,12 @@ To add emoji prefixes (📁 for folders, 📄 for files), you could use a map fu
 
 ```ts title="quartz.ts (override)"
 ExternalPlugin.Explorer({
-  mapFn: (node) => {
-    if (node.isFolder) {
-      node.displayName = "📁 " + node.displayName
-    } else {
-      node.displayName = "📄 " + node.displayName
-    }
-  },
-})
+    mapFn: (node) => {
+        if (node.isFolder) {
+            node.displayName = "📁 " + node.displayName;
+        } else {
+            node.displayName = "📄 " + node.displayName;
+        }
+    },
+});
 ```

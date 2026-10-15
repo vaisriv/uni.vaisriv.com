@@ -1,7 +1,7 @@
 ---
 title: Static
 tags:
-  - plugin/emitter
+    - plugin/emitter
 image:
 ---
 

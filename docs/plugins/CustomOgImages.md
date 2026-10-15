@@ -2,7 +2,7 @@
 title: Custom OG Images
 description: Generates Open Graph social preview images.
 tags:
-  - feature/emitter
+    - feature/emitter
 image: "[[social-image-preview-dark.png]]"
 repository: "[quartz-community/og-image](https://github.com/quartz-community/og-image)"
 enabled: true
@@ -32,29 +32,29 @@ This plugin accepts the following configuration options:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/og-image
-    enabled: true
-    options:
-      colorScheme: lightMode # "lightMode" or "darkMode"
-      width: 1200
-      height: 630
-      excludeRoot: false
+    - source: github:quartz-community/og-image
+      enabled: true
+      options:
+          colorScheme: lightMode # "lightMode" or "darkMode"
+          width: 1200
+          height: 630
+          excludeRoot: false
 ```
 
 For the TS override approach (needed for custom `imageStructure`):
 
 ```ts title="quartz.ts (override)"
-import * as ExternalPlugin from "./.quartz/plugins"
-import { defaultImage } from "./quartz/plugins/emitters/ogImage"
+import * as ExternalPlugin from "./.quartz/plugins";
+import { defaultImage } from "./quartz/plugins/emitters/ogImage";
 
 // Must be placed before loadQuartzConfig()
 ExternalPlugin.CustomOgImages({
-  colorScheme: "lightMode",
-  width: 1200,
-  height: 630,
-  excludeRoot: false,
-  imageStructure: defaultImage,
-})
+    colorScheme: "lightMode",
+    width: 1200,
+    height: 630,
+    excludeRoot: false,
+    imageStructure: defaultImage,
+});
 ```
 
 ### Configuration Options
@@ -108,46 +108,51 @@ export const myImage: SocialImageOptions["imageStructure"] = (...) => {
 >
 > ```scss title="custom.scss"
 > @font-face {
->   font-family: "Newsreader";
->   font-style: normal;
->   font-weight: normal;
->   font-display: swap;
->   src: url("/static/Newsreader.woff2") format("woff2");
+>     font-family: "Newsreader";
+>     font-style: normal;
+>     font-weight: normal;
+>     font-display: swap;
+>     src: url("/static/Newsreader.woff2") format("woff2");
 > }
 > ```
 >
 > Then in `quartz/util/og.tsx`, you can load the Satori fonts like so:
 >
 > ```tsx title="quartz/util/og.tsx"
-> import { joinSegments, QUARTZ } from "../path"
-> import fs from "fs"
-> import path from "path"
+> import { joinSegments, QUARTZ } from "../path";
+> import fs from "fs";
+> import path from "path";
 >
-> const newsreaderFontPath = joinSegments(QUARTZ, "static", "Newsreader.woff2")
-> export async function getSatoriFonts(headerFont: FontSpecification, bodyFont: FontSpecification) {
->   // ... rest of implementation remains same
->   const fonts: SatoriOptions["fonts"] = [
->     ...headerFontData.map((data, idx) => ({
->       name: headerFontName,
->       data,
->       weight: headerWeights[idx],
->       style: "normal" as const,
->     })),
->     ...bodyFontData.map((data, idx) => ({
->       name: bodyFontName,
->       data,
->       weight: bodyWeights[idx],
->       style: "normal" as const,
->     })),
->     {
->       name: "Newsreader",
->       data: await fs.promises.readFile(path.resolve(newsreaderFontPath)),
->       weight: 400,
->       style: "normal" as const,
->     },
->   ]
+> const newsreaderFontPath = joinSegments(QUARTZ, "static", "Newsreader.woff2");
+> export async function getSatoriFonts(
+>     headerFont: FontSpecification,
+>     bodyFont: FontSpecification,
+> ) {
+>     // ... rest of implementation remains same
+>     const fonts: SatoriOptions["fonts"] = [
+>         ...headerFontData.map((data, idx) => ({
+>             name: headerFontName,
+>             data,
+>             weight: headerWeights[idx],
+>             style: "normal" as const,
+>         })),
+>         ...bodyFontData.map((data, idx) => ({
+>             name: bodyFontName,
+>             data,
+>             weight: bodyWeights[idx],
+>             style: "normal" as const,
+>         })),
+>         {
+>             name: "Newsreader",
+>             data: await fs.promises.readFile(
+>                 path.resolve(newsreaderFontPath),
+>             ),
+>             weight: 400,
+>             style: "normal" as const,
+>         },
+>     ];
 >
->   return fonts
+>     return fonts;
 > }
 > ```
 >
@@ -166,86 +171,86 @@ This example will generate images that look as follows:
 | ![[custom-social-image-preview-light.png]] | ![[custom-social-image-preview-dark.png]] |
 
 ```tsx
-import { SatoriOptions } from "satori/wasm"
-import { GlobalConfiguration } from "../cfg"
-import { SocialImageOptions, UserOpts } from "./imageHelper"
-import { QuartzPluginData } from "../plugins/vfile"
+import { SatoriOptions } from "satori/wasm";
+import { GlobalConfiguration } from "../cfg";
+import { SocialImageOptions, UserOpts } from "./imageHelper";
+import { QuartzPluginData } from "../plugins/vfile";
 
 export const customImage: SocialImageOptions["imageStructure"] = (
-  cfg: GlobalConfiguration,
-  userOpts: UserOpts,
-  title: string,
-  description: string,
-  fonts: SatoriOptions["fonts"],
-  fileData: QuartzPluginData,
+    cfg: GlobalConfiguration,
+    userOpts: UserOpts,
+    title: string,
+    description: string,
+    fonts: SatoriOptions["fonts"],
+    fileData: QuartzPluginData,
 ) => {
-  // How many characters are allowed before switching to smaller font
-  const fontBreakPoint = 22
-  const useSmallerFont = title.length > fontBreakPoint
+    // How many characters are allowed before switching to smaller font
+    const fontBreakPoint = 22;
+    const useSmallerFont = title.length > fontBreakPoint;
 
-  const { colorScheme } = userOpts
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        height: "100%",
-        width: "100%",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
-          width: "100%",
-          backgroundColor: cfg.theme.colors[colorScheme].light,
-          flexDirection: "column",
-          gap: "2.5rem",
-          paddingTop: "2rem",
-          paddingBottom: "2rem",
-        }}
-      >
-        <p
-          style={{
-            color: cfg.theme.colors[colorScheme].dark,
-            fontSize: useSmallerFont ? 70 : 82,
-            marginLeft: "4rem",
-            textAlign: "center",
-            marginRight: "4rem",
-            fontFamily: fonts[0].name,
-          }}
+    const { colorScheme } = userOpts;
+    return (
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                height: "100%",
+                width: "100%",
+            }}
         >
-          {title}
-        </p>
-        <p
-          style={{
-            color: cfg.theme.colors[colorScheme].dark,
-            fontSize: 44,
-            marginLeft: "8rem",
-            marginRight: "8rem",
-            lineClamp: 3,
-            fontFamily: fonts[1].name,
-          }}
-        >
-          {description}
-        </p>
-      </div>
-      <div
-        style={{
-          height: "100%",
-          width: "2vw",
-          position: "absolute",
-          backgroundColor: cfg.theme.colors[colorScheme].tertiary,
-          opacity: 0.85,
-        }}
-      />
-    </div>
-  )
-}
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "100%",
+                    width: "100%",
+                    backgroundColor: cfg.theme.colors[colorScheme].light,
+                    flexDirection: "column",
+                    gap: "2.5rem",
+                    paddingTop: "2rem",
+                    paddingBottom: "2rem",
+                }}
+            >
+                <p
+                    style={{
+                        color: cfg.theme.colors[colorScheme].dark,
+                        fontSize: useSmallerFont ? 70 : 82,
+                        marginLeft: "4rem",
+                        textAlign: "center",
+                        marginRight: "4rem",
+                        fontFamily: fonts[0].name,
+                    }}
+                >
+                    {title}
+                </p>
+                <p
+                    style={{
+                        color: cfg.theme.colors[colorScheme].dark,
+                        fontSize: 44,
+                        marginLeft: "8rem",
+                        marginRight: "8rem",
+                        lineClamp: 3,
+                        fontFamily: fonts[1].name,
+                    }}
+                >
+                    {description}
+                </p>
+            </div>
+            <div
+                style={{
+                    height: "100%",
+                    width: "2vw",
+                    position: "absolute",
+                    backgroundColor: cfg.theme.colors[colorScheme].tertiary,
+                    opacity: 0.85,
+                }}
+            />
+        </div>
+    );
+};
 ```
 
 ### Advanced Example

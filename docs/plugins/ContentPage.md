@@ -2,7 +2,7 @@
 title: ContentPage
 description: Generates HTML pages for Markdown content.
 tags:
-  - plugin/pageType
+    - plugin/pageType
 image:
 repository: "[quartz-community/content-page](https://github.com/quartz-community/content-page)"
 enabled: true

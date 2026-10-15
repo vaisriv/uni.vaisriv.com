@@ -2,7 +2,7 @@
 title: Breadcrumbs
 description: Breadcrumb navigation trail.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 repository: "[quartz-community/breadcrumbs](https://github.com/quartz-community/breadcrumbs)"
 enabled: true
@@ -31,10 +31,10 @@ This plugin accepts the following configuration options:
 - source: github:quartz-community/breadcrumbs
   enabled: true
   options:
-    spacerSymbol: "❯"
-    rootName: Home
-    resolveFrontmatterTitle: true
-    showCurrentPage: true
+      spacerSymbol: "❯"
+      rootName: Home
+      resolveFrontmatterTitle: true
+      showCurrentPage: true
 ```
 
 ## API

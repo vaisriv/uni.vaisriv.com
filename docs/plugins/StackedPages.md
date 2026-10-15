@@ -2,7 +2,7 @@
 title: StackedPages
 description: Andy Matuschak-style stacked sliding panes.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 new-in-v5: true
 repository: "[quartz-community/stacked-pages](https://github.com/quartz-community/stacked-pages)"
@@ -43,14 +43,14 @@ This plugin accepts the following configuration options:
 - source: github:quartz-community/stacked-pages
   enabled: true
   layout:
-    position: afterBody
-    priority: 50
-    display: all
+      position: afterBody
+      priority: 50
+      display: all
   options:
-    maxTabs: 8
-    mobileBreakpoint: 800
-    showSpines: true
-    animateTransitions: true
+      maxTabs: 8
+      mobileBreakpoint: 800
+      showSpines: true
+      animateTransitions: true
 ```
 
 ## API

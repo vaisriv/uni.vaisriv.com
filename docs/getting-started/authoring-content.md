@@ -1,7 +1,7 @@
 ---
 title: Authoring Content
 aliases:
-  - "authoring content"
+    - "authoring content"
 ---
 
 All of the content in your Quartz should go in the `/content` folder. The content for the home page of your Quartz lives in `content/index.md`. If you've followed the [[installation|installation guide]], this folder should already be initialized. Any Markdown in this folder will get processed by Quartz.
@@ -21,7 +21,7 @@ Additionally, Quartz also allows you to specify additional metadata in your note
 title: Example Title
 draft: false
 tags:
-  - example-tag
+    - example-tag
 ---
 
 The rest of your content lives here. You can use **Markdown** here :)

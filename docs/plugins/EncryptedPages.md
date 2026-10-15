@@ -2,8 +2,8 @@
 title: EncryptedPages
 description: Password-protected encrypted pages with shadow content index.
 tags:
-  - plugin/transformer
-  - plugin/emitter
+    - plugin/transformer
+    - plugin/emitter
 image: "#FF1493"
 new-in-v5: true
 repository: "[quartz-community/encrypted-pages](https://github.com/quartz-community/encrypted-pages)"
@@ -104,10 +104,10 @@ This plugin provides a transformer, an emitter, and a component. All options are
 - source: github:quartz-community/encrypted-pages
   enabled: true
   options:
-    iterations: 600000
-    passwordField: password
-    unlistWhenEncrypted: false
-    outputPath: static/encryptedContentIndex.json
+      iterations: 600000
+      passwordField: password
+      unlistWhenEncrypted: false
+      outputPath: static/encryptedContentIndex.json
 ```
 
 > [!warning]

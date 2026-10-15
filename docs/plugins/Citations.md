@@ -2,7 +2,7 @@
 title: Citations
 description: Academic citation and bibliography support via BibTeX.
 tags:
-  - plugin/transformer
+    - plugin/transformer
 image: https://images.unsplash.com/photo-1582079133805-43655f026448
 repository: "[quartz-community/citations](https://github.com/quartz-community/citations)"
 enabled: false

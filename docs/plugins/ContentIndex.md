@@ -2,7 +2,7 @@
 title: ContentIndex
 description: Generates sitemap, RSS feed, and content index.
 tags:
-  - plugin/emitter
+    - plugin/emitter
 image:
 repository: "[quartz-community/content-index](https://github.com/quartz-community/content-index)"
 enabled: true

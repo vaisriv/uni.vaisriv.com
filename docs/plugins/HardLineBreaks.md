@@ -2,7 +2,7 @@
 title: HardLineBreaks
 description: Treats single newlines as hard line breaks.
 tags:
-  - plugin/transformer
+    - plugin/transformer
 image: "#ff8000"
 repository: "[quartz-community/hard-line-breaks](https://github.com/quartz-community/hard-line-breaks)"
 enabled: false

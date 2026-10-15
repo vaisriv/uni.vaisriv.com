@@ -9,8 +9,8 @@ Normally on the web, we write layout code using HTML which looks something like 
 
 ```html
 <article>
-  <h1>An article header</h1>
-  <p>Some content</p>
+    <h1>An article header</h1>
+    <p>Some content</p>
 </article>
 ```
 
@@ -40,31 +40,33 @@ A component plugin's `src/index.ts` typically exports a function (a constructor)
 
 ```tsx title="src/index.ts"
 import {
-  QuartzComponent,
-  QuartzComponentConstructor,
-  QuartzComponentProps,
-} from "@quartz-community/types"
+    QuartzComponent,
+    QuartzComponentConstructor,
+    QuartzComponentProps,
+} from "@quartz-community/types";
 
 interface Options {
-  favouriteNumber: number
+    favouriteNumber: number;
 }
 
 const defaultOptions: Options = {
-  favouriteNumber: 42,
-}
+    favouriteNumber: 42,
+};
 
-const MyComponent: QuartzComponentConstructor<Options> = (userOpts?: Options) => {
-  const opts = { ...defaultOptions, ...userOpts }
+const MyComponent: QuartzComponentConstructor<Options> = (
+    userOpts?: Options,
+) => {
+    const opts = { ...defaultOptions, ...userOpts };
 
-  const Component: QuartzComponent = (props: QuartzComponentProps) => {
-    if (opts.favouriteNumber < 0) return null
-    return <p>My favourite number is {opts.favouriteNumber}</p>
-  }
+    const Component: QuartzComponent = (props: QuartzComponentProps) => {
+        if (opts.favouriteNumber < 0) return null;
+        return <p>My favourite number is {opts.favouriteNumber}</p>;
+    };
 
-  return Component
-}
+    return Component;
+};
 
-export default MyComponent
+export default MyComponent;
 ```
 
 ### Props
@@ -73,17 +75,17 @@ All Quartz components accept the same set of props:
 
 ```tsx
 export type QuartzComponentProps = {
-  fileData: QuartzPluginData
-  cfg: GlobalConfiguration
-  tree: Node<QuartzPluginData>
-  allFiles: QuartzPluginData[]
-  displayClass?: "mobile-only" | "desktop-only"
-}
+    fileData: QuartzPluginData;
+    cfg: GlobalConfiguration;
+    tree: Node<QuartzPluginData>;
+    allFiles: QuartzPluginData[];
+    displayClass?: "mobile-only" | "desktop-only";
+};
 ```
 
 - `fileData`: Any metadata plugins may have added to the current page.
-  - `fileData.slug`: slug of the current page.
-  - `fileData.frontmatter`: any frontmatter parsed.
+    - `fileData.slug`: slug of the current page.
+    - `fileData.frontmatter`: any frontmatter parsed.
 - `cfg`: The `configuration` field in `quartz.config.yaml`.
 - `tree`: the resulting [HTML AST](https://github.com/syntax-tree/hast) after processing and transforming the file.
 - `allFiles`: Metadata for all files that have been parsed. Useful for doing page listings or figuring out the overall site structure.
@@ -96,14 +98,14 @@ In community plugins, styles are bundled with the plugin. You can define styles 
 ```tsx
 Component.css = `
   .my-component { color: red; }
-`
+`;
 ```
 
 For SCSS, you can import it and assign it to the `.css` property. The build system will handle the transformation:
 
 ```tsx
-import styles from "./styles.scss"
-Component.css = styles
+import styles from "./styles.scss";
+Component.css = styles;
 ```
 
 > [!warning]
@@ -116,12 +118,12 @@ Component plugins should use the i18n pattern for any user-facing strings. See [
 Quick reference:
 
 ```tsx
-import { i18n } from "../i18n"
+import { i18n } from "../i18n";
 
 const MyComponent: QuartzComponent = ({ cfg }) => {
-  const t = i18n(cfg.locale ?? "en-US").components.myComponent
-  return <h2>{t.title}</h2>
-}
+    const t = i18n(cfg.locale ?? "en-US").components.myComponent;
+    return <h2>{t.title}</h2>;
+};
 ```
 
 Always provide at least an `en-US` locale as the fallback. Additional locales are optional but encouraged for international reach.
@@ -137,13 +139,15 @@ If you need to create an `afterDOMLoaded` script that depends on page-specific e
 
 ```ts
 document.addEventListener("nav", () => {
-  // do page specific logic here
-  const toggleSwitch = document.querySelector("#switch") as HTMLInputElement
-  if (toggleSwitch) {
-    toggleSwitch.addEventListener("change", switchTheme)
-    window.addCleanup(() => toggleSwitch.removeEventListener("change", switchTheme))
-  }
-})
+    // do page specific logic here
+    const toggleSwitch = document.querySelector("#switch") as HTMLInputElement;
+    if (toggleSwitch) {
+        toggleSwitch.addEventListener("change", switchTheme);
+        window.addCleanup(() =>
+            toggleSwitch.removeEventListener("change", switchTheme),
+        );
+    }
+});
 ```
 
 You can also use the `"prenav"` event, which fires before the page is replaced during SPA navigation.
@@ -152,15 +156,15 @@ The `"render"` event fires when the DOM has been updated in-place without a full
 
 ```ts
 function setupMyComponent() {
-  const elements = document.querySelectorAll(".my-interactive")
-  for (const el of elements) {
-    el.addEventListener("click", handleClick)
-    window.addCleanup(() => el.removeEventListener("click", handleClick))
-  }
+    const elements = document.querySelectorAll(".my-interactive");
+    for (const el of elements) {
+        el.addEventListener("click", handleClick);
+        window.addCleanup(() => el.removeEventListener("click", handleClick));
+    }
 }
 
-document.addEventListener("nav", setupMyComponent)
-document.addEventListener("render", setupMyComponent)
+document.addEventListener("nav", setupMyComponent);
+document.addEventListener("render", setupMyComponent);
 ```
 
 It is best practice to track any event handlers via `window.addCleanup` to prevent memory leaks during SPA navigation.
@@ -170,12 +174,12 @@ It is best practice to track any event handlers via `window.addCleanup` to preve
 In community plugins, TypeScript scripts should be transpiled at build time. The plugin template includes an `inlineScriptPlugin` in `tsup.config.ts` that automatically transpiles `.inline.ts` files imported as text:
 
 ```tsx title="src/index.ts"
-import script from "./script.inline.ts"
+import script from "./script.inline.ts";
 
 const Component: QuartzComponent = (props) => {
-  return <button id="btn">Click me</button>
-}
-Component.afterDOMLoaded = script
+    return <button id="btn">Click me</button>;
+};
+Component.afterDOMLoaded = script;
 ```
 
 The `inlineScriptPlugin` handles transpiling TypeScript to browser-compatible JavaScript during the build step, allowing you to write type-safe client-side code.
@@ -192,30 +196,33 @@ Then, they can add it to their `quartz.config.yaml`:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:your-username/my-component
-    enabled: true
-    options:
-      favouriteNumber: 42
-    layout:
-      position: left
-      priority: 60
+    - source: github:your-username/my-component
+      enabled: true
+      options:
+          favouriteNumber: 42
+      layout:
+          position: left
+          priority: 60
 ```
 
 For advanced usage via the TS override in `quartz.ts`:
 
 ```ts title="quartz.ts (override)"
-import { loadQuartzConfig, loadQuartzLayout } from "./quartz/plugins/loader/config-loader"
-import Plugin from "./.quartz/plugins"
+import {
+    loadQuartzConfig,
+    loadQuartzLayout,
+} from "./quartz/plugins/loader/config-loader";
+import Plugin from "./.quartz/plugins";
 
-const config = await loadQuartzConfig()
-export default config
+const config = await loadQuartzConfig();
+export default config;
 export const layout = await loadQuartzLayout({
-  byPageType: {
-    content: {
-      left: [Plugin.MyComponent({ favouriteNumber: 42 })],
+    byPageType: {
+        content: {
+            left: [Plugin.MyComponent({ favouriteNumber: 42 })],
+        },
     },
-  },
-})
+});
 ```
 
 ### Receiving YAML Options in Component-Only Plugins
@@ -226,9 +233,9 @@ To receive YAML options in a component-only plugin, export an `init` function fr
 
 ```ts title="src/index.ts"
 export function init(options?: Record<string, unknown>): void {
-  // options contains merged defaultOptions + user's YAML options
-  const myFlag = (options?.myFlag as boolean) ?? false
-  // Use options to configure registrations, global state, etc.
+    // options contains merged defaultOptions + user's YAML options
+    const myFlag = (options?.myFlag as boolean) ?? false;
+    // Use options to configure registrations, global state, etc.
 }
 ```
 
@@ -238,12 +245,12 @@ Declare your defaults in `package.json`:
 
 ```json title="package.json"
 {
-  "quartz": {
-    "category": ["component"],
-    "defaultOptions": {
-      "myFlag": false
+    "quartz": {
+        "category": ["component"],
+        "defaultOptions": {
+            "myFlag": false
+        }
     }
-  }
 }
 ```
 

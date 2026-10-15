@@ -2,7 +2,7 @@
 title: GitHubFlavoredMarkdown
 description: GitHub Flavored Markdown support (tables, task lists, footnotes, strikethrough).
 tags:
-  - plugin/transformer
+    - plugin/transformer
 image:
 repository: "[quartz-community/github-flavored-markdown](https://github.com/quartz-community/github-flavored-markdown)"
 enabled: true

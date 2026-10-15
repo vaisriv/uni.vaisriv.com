@@ -2,7 +2,7 @@
 title: Favicon
 description: Emits the site favicon.
 tags:
-  - plugin/emitter
+    - plugin/emitter
 image:
 repository: "[quartz-community/favicon](https://github.com/quartz-community/favicon)"
 enabled: true

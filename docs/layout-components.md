@@ -16,32 +16,32 @@ In YAML, flex layouts are created using **groups**. Define a group in the top-le
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/search
-    enabled: true
-    layout:
-      position: left
-      priority: 20
-      group: toolbar
-      groupOptions:
-        grow: true # Search will grow to fill available space
-  - source: github:quartz-community/darkmode
-    enabled: true
-    layout:
-      position: left
-      priority: 30
-      group: toolbar # Darkmode keeps its natural size
-  - source: github:quartz-community/reader-mode
-    enabled: true
-    layout:
-      position: left
-      priority: 35
-      group: toolbar
+    - source: github:quartz-community/search
+      enabled: true
+      layout:
+          position: left
+          priority: 20
+          group: toolbar
+          groupOptions:
+              grow: true # Search will grow to fill available space
+    - source: github:quartz-community/darkmode
+      enabled: true
+      layout:
+          position: left
+          priority: 30
+          group: toolbar # Darkmode keeps its natural size
+    - source: github:quartz-community/reader-mode
+      enabled: true
+      layout:
+          position: left
+          priority: 35
+          group: toolbar
 
 layout:
-  groups:
-    toolbar:
-      direction: row
-      gap: 0.5rem
+    groups:
+        toolbar:
+            direction: row
+            gap: 0.5rem
 ```
 
 The `groupOptions` field on each plugin entry supports the following flex item properties:
@@ -69,33 +69,33 @@ For full programmatic control, use the `Component.Flex()` wrapper in `quartz.ts`
 
 ```ts title="quartz.ts (override)"
 Component.Flex({
-  components: [
-    {
-      Component: Plugin.Search(),
-      grow: true, // Search will grow to fill available space
-    },
-    { Component: Plugin.Darkmode() }, // Darkmode keeps its natural size
-  ],
-  direction: "row",
-  gap: "1rem",
-})
+    components: [
+        {
+            Component: Plugin.Search(),
+            grow: true, // Search will grow to fill available space
+        },
+        { Component: Plugin.Darkmode() }, // Darkmode keeps its natural size
+    ],
+    direction: "row",
+    gap: "1rem",
+});
 ```
 
 ```typescript
 type FlexConfig = {
-  components: {
-    Component: QuartzComponent
-    grow?: boolean
-    shrink?: boolean
-    basis?: string
-    order?: number
-    align?: "start" | "end" | "center" | "stretch"
-    justify?: "start" | "end" | "center" | "between" | "around"
-  }[]
-  direction?: "row" | "row-reverse" | "column" | "column-reverse"
-  wrap?: "nowrap" | "wrap" | "wrap-reverse"
-  gap?: string
-}
+    components: {
+        Component: QuartzComponent;
+        grow?: boolean;
+        shrink?: boolean;
+        basis?: string;
+        order?: number;
+        align?: "start" | "end" | "center" | "stretch";
+        justify?: "start" | "end" | "center" | "between" | "around";
+    }[];
+    direction?: "row" | "row-reverse" | "column" | "column-reverse";
+    wrap?: "nowrap" | "wrap" | "wrap-reverse";
+    gap?: string;
+};
 ```
 
 > [!note] Overriding behavior
@@ -103,7 +103,7 @@ type FlexConfig = {
 >
 > ```scss
 > .flex-component {
->   display: block; // or any other display type
+>     display: block; // or any other display type
 > }
 > ```
 
@@ -117,12 +117,12 @@ In YAML, use the `display` property on a plugin's layout entry:
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/table-of-contents
-    enabled: true
-    layout:
-      position: right
-      priority: 20
-      display: desktop-only # Only visible on desktop
+    - source: github:quartz-community/table-of-contents
+      enabled: true
+      layout:
+          position: right
+          priority: 20
+          display: desktop-only # Only visible on desktop
 ```
 
 Available `display` values:
@@ -138,11 +138,11 @@ Available `display` values:
 For the TS override approach, use `Component.MobileOnly()` or `Component.DesktopOnly()` wrappers:
 
 ```ts title="quartz.ts (override)"
-Component.MobileOnly(Component.Spacer())
+Component.MobileOnly(Component.Spacer());
 ```
 
 ```ts title="quartz.ts (override)"
-Component.DesktopOnly(Plugin.TableOfContents())
+Component.DesktopOnly(Plugin.TableOfContents());
 ```
 
 ## `ConditionalRender` Component
@@ -155,12 +155,12 @@ In YAML, use the `condition` property on a plugin's layout entry. Quartz provide
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/breadcrumbs
-    enabled: true
-    layout:
-      position: beforeBody
-      priority: 5
-      condition: not-index # Hide breadcrumbs on the root index page
+    - source: github:quartz-community/breadcrumbs
+      enabled: true
+      layout:
+          position: beforeBody
+          priority: 5
+          condition: not-index # Hide breadcrumbs on the root index page
 ```
 
 Available built-in conditions:
@@ -178,16 +178,16 @@ For custom conditions that aren't covered by the built-in presets, use `Componen
 
 ```ts title="quartz.ts (override)"
 Component.ConditionalRender({
-  component: Plugin.Search(),
-  condition: (props) => props.displayClass !== "fullpage",
-})
+    component: Plugin.Search(),
+    condition: (props) => props.displayClass !== "fullpage",
+});
 ```
 
 ```typescript
 type ConditionalRenderConfig = {
-  component: QuartzComponent
-  condition: (props: QuartzComponentProps) => boolean
-}
+    component: QuartzComponent;
+    condition: (props: QuartzComponentProps) => boolean;
+};
 ```
 
 > [!tip]

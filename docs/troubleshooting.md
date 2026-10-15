@@ -47,10 +47,10 @@ Make sure your YAML indentation is correct. Options must be nested under the plu
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/some-plugin
-    enabled: true
-    options:
-      myOption: value # correct: nested under options
+    - source: github:quartz-community/some-plugin
+      enabled: true
+      options:
+          myOption: value # correct: nested under options
 ```
 
 A common mistake is putting options at the wrong indentation level.

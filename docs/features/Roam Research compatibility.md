@@ -1,7 +1,7 @@
 ---
 title: "Roam Research Compatibility"
 tags:
-  - feature/transformer
+    - feature/transformer
 ---
 
 [Roam Research](https://roamresearch.com) is a note-taking tool that organizes your knowledge graph in a unique and interconnected way.
@@ -11,20 +11,20 @@ regular Markdown via the [[RoamFlavoredMarkdown]] plugin.
 
 ```yaml title="quartz.config.yaml"
 plugins:
-  - source: github:quartz-community/roam
-    enabled: true
-    order: 25 # must come before obsidian-flavored-markdown
-  - source: github:quartz-community/obsidian-flavored-markdown
-    enabled: true
-    order: 30
+    - source: github:quartz-community/roam
+      enabled: true
+      order: 25 # must come before obsidian-flavored-markdown
+    - source: github:quartz-community/obsidian-flavored-markdown
+      enabled: true
+      order: 30
 ```
 
 For the TS override approach, place overrides before `loadQuartzConfig()` in `quartz.ts`:
 
 ```ts title="quartz.ts (override)"
-import * as ExternalPlugin from "./.quartz/plugins"
+import * as ExternalPlugin from "./.quartz/plugins";
 
-ExternalPlugin.RoamFlavoredMarkdown()
+ExternalPlugin.RoamFlavoredMarkdown();
 ```
 
 > [!warning]

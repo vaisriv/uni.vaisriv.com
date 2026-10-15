@@ -1,4 +1,4 @@
-import { PageFrame, PageFrameProps } from "./types"
+import { PageFrame, PageFrameProps } from "./types";
 
 /**
  * Minimal page frame — no sidebars, no header/footer chrome. Only the
@@ -9,17 +9,17 @@ import { PageFrame, PageFrameProps } from "./types"
  * or custom landing pages that want complete control of the viewport.
  */
 export const MinimalFrame: PageFrame = {
-  name: "minimal",
-  render({ componentData, pageBody: Content, footer }: PageFrameProps) {
-    return (
-      <>
-        <div class="center minimal">
-          <Content {...componentData} />
-        </div>
-        {footer.map((FooterComponent) => (
-          <FooterComponent {...componentData} />
-        ))}
-      </>
-    )
-  },
-}
+    name: "minimal",
+    render({ componentData, pageBody: Content, footer }: PageFrameProps) {
+        return (
+            <>
+                <div class="center minimal">
+                    <Content {...componentData} />
+                </div>
+                {footer.map((FooterComponent) => (
+                    <FooterComponent {...componentData} />
+                ))}
+            </>
+        );
+    },
+};

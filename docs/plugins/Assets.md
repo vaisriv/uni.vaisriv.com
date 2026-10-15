@@ -1,7 +1,7 @@
 ---
 title: Assets
 tags:
-  - plugin/emitter
+    - plugin/emitter
 image: https://images.unsplash.com/photo-1526304640581-d334cdbbf45e
 ---
 

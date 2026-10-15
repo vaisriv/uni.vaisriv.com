@@ -2,7 +2,7 @@
 title: RoamFlavoredMarkdown
 description: Compatibility for Roam Research export format.
 tags:
-  - plugin/transformer
+    - plugin/transformer
 image:
 repository: "[quartz-community/roam](https://github.com/quartz-community/roam)"
 enabled: false

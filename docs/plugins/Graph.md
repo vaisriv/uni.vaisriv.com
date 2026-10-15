@@ -2,7 +2,7 @@
 title: Graph
 description: Interactive link graph visualization.
 tags:
-  - plugin/component
+    - plugin/component
 image:
 repository: "[quartz-community/graph](https://github.com/quartz-community/graph)"
 enabled: true
@@ -45,34 +45,34 @@ Both `localGraph` and `globalGraph` accept the following options:
 - source: github:quartz-community/graph
   enabled: true
   options:
-    localGraph:
-      drag: true
-      zoom: true
-      depth: 1
-      scale: 1.1
-      repelForce: 0.5
-      centerForce: 0.3
-      linkDistance: 30
-      fontSize: 0.6
-      opacityScale: 1
-      removeTags: []
-      showTags: true
-      focusOnHover: false
-      enableRadial: false
-    globalGraph:
-      drag: true
-      zoom: true
-      depth: -1
-      scale: 0.9
-      repelForce: 0.5
-      centerForce: 0.3
-      linkDistance: 30
-      fontSize: 0.6
-      opacityScale: 1
-      removeTags: []
-      showTags: true
-      focusOnHover: true
-      enableRadial: true
+      localGraph:
+          drag: true
+          zoom: true
+          depth: 1
+          scale: 1.1
+          repelForce: 0.5
+          centerForce: 0.3
+          linkDistance: 30
+          fontSize: 0.6
+          opacityScale: 1
+          removeTags: []
+          showTags: true
+          focusOnHover: false
+          enableRadial: false
+      globalGraph:
+          drag: true
+          zoom: true
+          depth: -1
+          scale: 0.9
+          repelForce: 0.5
+          centerForce: 0.3
+          linkDistance: 30
+          fontSize: 0.6
+          opacityScale: 1
+          removeTags: []
+          showTags: true
+          focusOnHover: true
+          enableRadial: true
 ```
 
 ## API

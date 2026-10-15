@@ -2,7 +2,7 @@
 title: RemoveDrafts
 description: Filters out pages marked as drafts.
 tags:
-  - plugin/filter
+    - plugin/filter
 image:
 repository: "[quartz-community/remove-draft](https://github.com/quartz-community/remove-draft)"
 enabled: true
