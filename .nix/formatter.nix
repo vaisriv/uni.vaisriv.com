@@ -23,6 +23,7 @@ inputs.treefmt-nix.lib.mkWrapper pkgs {
             "notes/*"
             "content/*"
             "package-lock.json"
+            "plugins/latex/dist/*"
         ];
     };
 }
