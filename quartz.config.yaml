@@ -1,13 +1,13 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-    pageTitle: Quartz 5
+    pageTitle: Vai's Uni Notes
     pageTitleSuffix: ""
     enableSPA: true
     enablePopovers: true
     analytics:
         provider: plausible
     locale: en-US
-    baseUrl: mysite.github.io
+    baseUrl: uni.vaisriv.com
     ignorePatterns:
         - private
         - templates
@@ -21,25 +21,25 @@ configuration:
             code: IBM Plex Mono
         colors:
             lightMode:
-                light: "#faf8f8"
-                lightgray: "#e5e5e5"
-                gray: "#b8b8b8"
-                darkgray: "#4e4e4e"
-                dark: "#2b2b2b"
-                secondary: "#284b63"
-                tertiary: "#84a59d"
-                highlight: rgba(143, 159, 169, 0.15)
-                textHighlight: "#fff23688"
+                light: "#fffaf3"
+                lightgray: "#f2e9de"
+                gray: "#9893a5"
+                darkgray: "#797593"
+                dark: "#575279"
+                secondary: "#907aa9"
+                tertiary: "#56949f"
+                highlight: rgba(144, 122, 169, 0.10)
+                textHighlight: "#d7827e88"
             darkMode:
-                light: "#161618"
-                lightgray: "#393639"
-                gray: "#646464"
-                darkgray: "#d4d4d4"
-                dark: "#ebebec"
-                secondary: "#7b97aa"
-                tertiary: "#84a59d"
-                highlight: rgba(143, 159, 169, 0.15)
-                textHighlight: "#b3aa0288"
+                light: "#1f1d2e"
+                lightgray: "#26233a"
+                gray: "#6e6a86"
+                darkgray: "#b8b6c9"
+                dark: "#e0def4"
+                secondary: "#c4a7e7"
+                tertiary: "#9ccfd8"
+                highlight: rgba(196, 167, 231, 0.10)
+                textHighlight: "#ebbcba88"
 plugins:
     - source: "@quartz-community/created-modified-date"
       enabled: true
@@ -54,8 +54,8 @@ plugins:
       enabled: true
       options:
           theme:
-              light: github-light
-              dark: github-dark
+              light: rose-pine-dawn
+              dark: rose-pine
           keepBackground: false
       order: 20
     - source: "@quartz-community/obsidian-flavored-markdown"
@@ -73,18 +73,87 @@ plugins:
       layout:
           position: right
           priority: 30
+          display: desktop-only
     - source: "@quartz-community/crawl-links"
       enabled: true
       options:
           markdownLinkResolution: shortest
+          prettyLinks: true
+          openLinksInNewTab: false
+          lazyLoad: true
+          externalLinkIcon: true
       order: 60
     - source: "@quartz-community/description"
       enabled: true
       order: 70
-    - source: "@quartz-community/latex"
+    # vendored fork of @quartz-community/latex with KaTeX mhchem (\ce, \pu) enabled
+    - source: ./plugins/latex
       enabled: true
       options:
           renderEngine: katex
+          customMacros:
+              # symbols
+              "\\questeq": "\\stackrel{?}{=}"
+              "\\st": "\\text{ s.t. }"
+              "\\wrt": "\\text{ wrt. }"
+
+              # vectors
+              "\\crvector": "\\begin{bmatrix}#1\\end{bmatrix}"
+              "\\vecb": "\\vec{\\bm{#1}}"
+
+              # functions
+              "\\func": "\\mathrm{\\,#1}"
+              "\\fn": "\\mathrm{\\,#1}\\left(#2\\right)"
+
+              # derivatives
+              "\\drv": "\\frac{\\mathrm{d}#1}{\\mathrm{d}#2}"
+              "\\ddrv": "\\frac{\\mathrm{d}^{2}#1}{\\mathrm{d}{#2}^{2}}"
+              "\\deriv": "\\frac{\\mathrm{d}}{\\mathrm{d}#1}\\left(#2\\right)"
+              "\\dderiv": "\\frac{\\mathrm{d}^{2}}{\\mathrm{d}{#1}^{2}}\\left(#2\\right)"
+
+              # partial derivatives
+              "\\pdrv": "\\frac{\\partial#1}{\\partial#2}"
+              "\\pddrv": "\\frac{\\partial^{2}#1}{\\partial{#2}^{2}}"
+              "\\pderiv": "\\frac{\\partial}{\\partial#1}\\left(#2\\right)"
+              "\\pdderiv": "\\frac{\\partial^{2}}{\\partial{}{#1}^{2}}\\left(#2\\right)"
+
+              # probability
+              "\\E": "\\mathrm{\\,E}\\left(#1\\right)"
+              "\\Var": "\\mathrm{\\,Var}\\left(#1\\right)"
+              "\\Cov": "\\mathrm{\\,Cov}\\left(#1\\right)"
+              "\\Bias": "\\mathrm{\\,Bias}\\left(#1\\right)"
+              "\\Prob": "\\mathrm{\\,Pr}\\left(#1\\right)"
+
+              # trig
+              "\\sin": "\\mathrm{\\,sin}\\left(#1\\right)"
+              "\\cos": "\\mathrm{\\,cos}\\left(#1\\right)"
+              "\\tan": "\\mathrm{\\,tan}\\left(#1\\right)"
+              "\\csc": "\\mathrm{\\,csc}\\left(#1\\right)"
+              "\\sec": "\\mathrm{\\,sec}\\left(#1\\right)"
+              "\\cot": "\\mathrm{\\,cot}\\left(#1\\right)"
+              "\\sinh": "\\mathrm{\\,sinh}\\left(#1\\right)"
+              "\\cosh": "\\mathrm{\\,cosh}\\left(#1\\right)"
+              "\\tanh": "\\mathrm{\\,tanh}\\left(#1\\right)"
+              "\\coth": "\\mathrm{\\,coth}\\left(#1\\right)"
+              "\\arcsin": "\\mathrm{\\,arcsin}\\left(#1\\right)"
+              "\\arccos": "\\mathrm{\\,arccos}\\left(#1\\right)"
+              "\\arctan": "\\mathrm{\\,arctan}\\left(#1\\right)"
+
+              # log, ln, etc
+              "\\log": "\\mathrm{\\,log}\\left(#1\\right)"
+              "\\ln": "\\mathrm{\\,ln}\\left(#1\\right)"
+
+              # num sets
+              "\\Re": "\\mathfrak{\\,Re}\\left{#1\\right}"
+              "\\Im": "\\mathfrak{\\,Im}\\left{#1\\right}"
+
+              # laplace
+              "\\laplace": "\\mathscr{\\,L}\\left{#1\\right}"
+              "\\ilaplace": "\\mathscr{\\,L}^{-1}\\left{#1\\right}"
+
+              # integrals
+              "\\inti": "\\int #1 \\mathrm{\\,d}#2"
+              "\\intd": "\\int_{#1}^{#2} #3 \\mathrm{\\,d}#4"
       order: 80
     - source: "@quartz-community/citations"
       enabled: false
@@ -181,7 +250,7 @@ plugins:
           position: beforeBody
           priority: 20
     - source: "@quartz-community/tag-list"
-      enabled: false
+      enabled: true
       layout:
           position: beforeBody
           priority: 30
@@ -248,7 +317,7 @@ plugins:
               - tags
               - aliases
           excludedProperties: []
-          hidePropertiesView: false
+          hidePropertiesView: true
           delimiters: ---
           language: yaml
       order: 5

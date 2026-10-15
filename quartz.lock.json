@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "plugins": {
+    "latex": {
+      "source": "./plugins/latex",
+      "resolved": "/Users/vai/files/code/git/uni-notes/quartz-v5/plugins/latex",
+      "commit": "local",
+      "installedAt": "2026-10-15T20:20:29.413Z"
+    }
+  }
+}
