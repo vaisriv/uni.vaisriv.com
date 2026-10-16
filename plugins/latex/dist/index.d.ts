@@ -17,8 +17,10 @@ type Args = boolean | number | string | null;
 interface MacroType {
     [key: string]: string | Args[];
 }
+type Engine = "katex" | "mathjax" | "typst";
 interface LatexOptions {
-    renderEngine: "katex" | "mathjax" | "typst";
+    renderEngine: Engine;
+    engineByPath: Record<string, Engine>;
     customMacros: MacroType;
     katexOptions: Omit<KatexOptions, "macros" | "output">;
     mathJaxOptions: Omit<MathjaxOptions, "macros">;

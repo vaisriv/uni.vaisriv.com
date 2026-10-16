@@ -236803,52 +236803,85 @@ var rehypeMathJaxSvg = createPlugin(function(options) {
   return createRenderer(options, new import_svg2.SVG(options.svg || void 0));
 });
 var svg_default = rehypeMathJaxSvg;
+var ENGINES = ["katex", "mathjax", "typst"];
+var isEngine = (value) => ENGINES.includes(value);
 var Latex = (opts) => {
   const engine = opts?.renderEngine ?? "katex";
   const macros2 = opts?.customMacros ?? {};
+  const pathRules = Object.entries(opts?.engineByPath ?? {}).map(([prefix, e]) => [prefix.replace(/^\/+|\/+$/g, ""), e]).sort(([a2], [b2]) => b2.length - a2.length);
+  const enginesInUse = /* @__PURE__ */ new Set([engine, ...pathRules.map(([, e]) => e)]);
+  const pickEngine = (file) => {
+    const frontmatter = file.data.frontmatter;
+    if (isEngine(frontmatter?.math)) return frontmatter.math;
+    const slug = String(file.data.slug ?? "");
+    for (const [prefix, e] of pathRules) {
+      if (slug === prefix || slug.startsWith(prefix + "/")) return e;
+    }
+    return engine;
+  };
+  const rehypeFor = (e) => {
+    switch (e) {
+      case "katex":
+        return [rehypeKatex, { output: "html", macros: macros2, ...opts?.katexOptions ?? {} }];
+      case "typst":
+        return [rehypeTypst, opts?.typstOptions ?? {}];
+      default:
+      case "mathjax":
+        return [
+          svg_default,
+          {
+            ...opts?.mathJaxOptions ?? {},
+            tex: {
+              ...opts?.mathJaxOptions?.tex ?? {},
+              macros: macros2
+            }
+          }
+        ];
+    }
+  };
+  const stripTypstStyles = (node, inTypstSvg = false) => {
+    if (!Array.isArray(node.children)) return;
+    const className = node.properties?.className;
+    const isTypstSvg = inTypstSvg || node.tagName === "svg" && Array.isArray(className) && className.includes("typst-doc");
+    if (isTypstSvg) {
+      node.children = node.children.filter((child) => child.tagName !== "style");
+    }
+    for (const child of node.children) stripTypstStyles(child, isTypstSvg);
+  };
+  function rehypeMathDispatch() {
+    const transforms = /* @__PURE__ */ new Map();
+    return (tree, file) => {
+      const e = pickEngine(file);
+      let transform2 = transforms.get(e);
+      if (!transform2) {
+        const [attacher, options] = rehypeFor(e);
+        transform2 = attacher.call(this, options);
+        transforms.set(e, transform2);
+      }
+      if (e !== "typst") return transform2(tree, file);
+      return Promise.resolve(transform2(tree, file)).then(() => stripTypstStyles(tree));
+    };
+  }
   return {
     name: "Latex",
     markdownPlugins() {
       return [remarkMath];
     },
     htmlPlugins() {
-      switch (engine) {
-        case "katex": {
-          return [[rehypeKatex, { output: "html", macros: macros2, ...opts?.katexOptions ?? {} }]];
-        }
-        case "typst": {
-          return [[rehypeTypst, opts?.typstOptions ?? {}]];
-        }
-        default:
-        case "mathjax": {
-          return [
-            [
-              svg_default,
-              {
-                ...opts?.mathJaxOptions ?? {},
-                tex: {
-                  ...opts?.mathJaxOptions?.tex ?? {},
-                  macros: macros2
-                }
-              }
-            ]
-          ];
-        }
-      }
+      return [rehypeMathDispatch];
     },
     externalResources() {
-      switch (engine) {
-        case "katex":
-          return {
-            css: [{ content: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" }],
-            js: [
-              {
-                src: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js",
-                loadTime: "afterDOMReady",
-                contentType: "external"
-              }
-            ]
-          };
+      if (enginesInUse.has("katex")) {
+        return {
+          css: [{ content: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" }],
+          js: [
+            {
+              src: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js",
+              loadTime: "afterDOMReady",
+              contentType: "external"
+            }
+          ]
+        };
       }
     }
   };

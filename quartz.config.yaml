@@ -91,6 +91,10 @@ plugins:
       enabled: true
       options:
           renderEngine: katex
+          # typst for grad notes; override per note with `math: katex|typst` frontmatter
+          engineByPath:
+              grad: typst
+          # customMacros only apply to katex
           customMacros:
               # symbols
               "\\questeq": "\\stackrel{?}{=}"
