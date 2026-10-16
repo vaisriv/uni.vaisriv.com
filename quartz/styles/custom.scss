@@ -7,3 +7,45 @@ img {
     margin-right: auto;
     background-color: white;
 }
+
+// typst math (grad notes): the plugin strips typst's per-formula <style>, so this is
+// the scoped subset of it, plus glyphs/rules following the theme text color like katex
+svg.typst-doc {
+    overflow: visible;
+
+    .typst-text {
+        pointer-events: bounding-box;
+    }
+
+    [fill="#000"] {
+        fill: var(--darkgray);
+    }
+
+    [stroke="#000"] {
+        stroke: var(--darkgray);
+    }
+
+    // invisible selectable text layer, so copying a formula yields its text
+    .tsel,
+    .tsel span {
+        left: 0;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        white-space: pre;
+        text-align: justify;
+        text-align-last: justify;
+        color: transparent;
+
+        &::selection {
+            color: transparent;
+            background: var(--highlight);
+        }
+    }
+}
+
+// shrink display equations to fit narrow screens instead of overflowing
+svg.typst-doc[style*="display:block"] {
+    max-width: 100%;
+    height: auto;
+}
