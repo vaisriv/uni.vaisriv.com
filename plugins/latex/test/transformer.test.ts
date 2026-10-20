@@ -85,6 +85,23 @@ describe("Latex", () => {
       expect(out).toContain('"katex"');
     });
 
+    it("renders typst errors as an error span", async () => {
+      const out = await render(opts, { slug: "grad/a" }, "vb(x)");
+      expect(out).toContain('"typst-error"');
+    });
+
+    it("prepends the typst preamble to every formula", async () => {
+      const preamble = [
+        '#import "@preview/physica:0.9.8": *',
+        '#import "@preview/unify:0.8.1": *',
+        '#add-unit("decibelIsotropic", "dBi", "upright(\\"dBi\\")", space: true)',
+      ].join("\n");
+      const withPreamble = { ...opts, typstOptions: { preamble } };
+      const out = await render(withPreamble, { slug: "grad/a" }, 'vb(x) + qty(3, "dBi")');
+      expect(out).toContain('"svg"');
+      expect(out).not.toContain('"typst-error"');
+    });
+
     it("keeps katex resources when katex is only a fallback", () => {
       const transformer = Latex({ renderEngine: "typst", engineByPath: { undergrad: "katex" } });
       expect(transformer.externalResources?.(createCtx())?.css).toHaveLength(1);

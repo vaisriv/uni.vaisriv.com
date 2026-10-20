@@ -3,10 +3,10 @@ import "katex/contrib/mhchem";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeMathjax from "rehype-mathjax/svg";
-import rehypeTypst from "@myriaddreamin/rehype-typst";
 import type { QuartzTransformerPlugin } from "@quartz-community/types";
 import type { KatexOptions } from "katex";
 import type { VFile } from "vfile";
+import rehypeTypst, { type TypstOptions } from "./typst";
 
 interface MathjaxTexOptions {
   macros?: Record<string, string | unknown[]>;
@@ -15,10 +15,6 @@ interface MathjaxTexOptions {
 
 interface MathjaxOptions {
   tex?: MathjaxTexOptions;
-  [key: string]: unknown;
-}
-
-interface TypstOptions {
   [key: string]: unknown;
 }
 

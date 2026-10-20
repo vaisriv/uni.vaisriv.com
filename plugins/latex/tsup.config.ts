@@ -32,7 +32,6 @@ const EXTERNALS = [
   "vfile/*",
   "unified",
   "@myriaddreamin/typst-ts-node-compiler",
-  "@myriaddreamin/rehype-typst",
 ];
 
 export default defineConfig({

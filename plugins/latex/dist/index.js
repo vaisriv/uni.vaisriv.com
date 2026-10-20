@@ -2,7 +2,7 @@ import { createRequire } from 'module';
 import default2 from 'path';
 import default3 from 'process';
 import { fileURLToPath } from 'url';
-import rehypeTypst from '@myriaddreamin/rehype-typst';
+import { NodeCompiler } from '@myriaddreamin/typst-ts-node-compiler';
 
 const require$1 = createRequire(import.meta.url);
 var __create = Object.create;
@@ -236803,6 +236803,124 @@ var rehypeMathJaxSvg = createPlugin(function(options) {
   return createRenderer(options, new import_svg2.SVG(options.svg || void 0));
 });
 var svg_default = rehypeMathJaxSvg;
+var compiler;
+var inlineTemplate = (preamble, code) => `
+#set page(height: auto, width: auto, margin: 0pt)
+${preamble}
+
+#let s = state("t", (:))
+
+#let pin(t) = context {
+  let width = measure(line(length: here().position().y)).width
+  s.update(it => it.insert(t, width) + it)
+}
+
+#show math.equation: it => {
+  box(it, inset: (top: 0.5em, bottom: 0.5em))
+}
+
+$pin("l1")${code}$
+
+#context [
+  #metadata(s.final().at("l1")) <label>
+]
+`;
+var displayTemplate = (preamble, code) => `
+#set page(height: auto, width: auto, margin: 0pt)
+${preamble}
+
+$ ${code} $
+`;
+function renderToSVGString(code, displayMode, preamble) {
+  const $typst = compiler ||= NodeCompiler.create();
+  try {
+    const template = displayMode ? displayTemplate : inlineTemplate;
+    const docRes = $typst.compile({ mainFileContent: template(preamble, code) });
+    if (!docRes.result) {
+      const diags = $typst.fetchDiagnostics(docRes.takeDiagnostics());
+      throw new Error(diags.map((d2) => d2.message).join("; ") || "typst compile failed");
+    }
+    const doc = docRes.result;
+    const res = { svg: $typst.svg(doc) };
+    if (!displayMode) {
+      const query = $typst.query(doc, { selector: "<label>" });
+      res.baselinePosition = parseFloat(query[0].value.slice(0, -2));
+    }
+    return res;
+  } finally {
+    $typst.evictCache(10);
+  }
+}
+function rehypeTypst(options) {
+  const preamble = options?.preamble ?? "";
+  const errorColor = options?.errorColor || "#cc0000";
+  return async function(tree, file) {
+    const matches2 = [];
+    visitParents(tree, "element", (element4, parents) => {
+      matches2.push([element4, parents]);
+    });
+    const visitor = async (element4, parents) => {
+      const classes = Array.isArray(element4.properties.className) ? element4.properties.className : [];
+      const languageMath = classes.includes("language-math");
+      const mathDisplay = classes.includes("math-display");
+      const mathInline = classes.includes("math-inline");
+      let displayMode = mathDisplay;
+      if (!languageMath && !mathDisplay && !mathInline) return;
+      let parent = parents[parents.length - 1];
+      let scope = element4;
+      if (element4.tagName === "code" && languageMath && parent && parent.type === "element" && parent.tagName === "pre") {
+        scope = parent;
+        parent = parents[parents.length - 2];
+        displayMode = true;
+      }
+      if (!parent) return;
+      const value = toText(scope, { whitespace: "pre" });
+      let result;
+      try {
+        const rendered = renderToSVGString(value, displayMode, preamble);
+        const root2 = fromHtmlIsomorphic(rendered.svg, { fragment: true });
+        const svg3 = root2.children[0];
+        const defaultEm = 11;
+        const height = parseFloat(String(svg3.properties["dataHeight"]));
+        const width = parseFloat(String(svg3.properties["dataWidth"]));
+        const shiftEm = (height - (rendered.baselinePosition ?? 0)) / defaultEm;
+        svg3.properties.style = `vertical-align: -${shiftEm}em;`;
+        svg3.properties.height = `${height / defaultEm}em`;
+        svg3.properties.width = `${width / defaultEm}em`;
+        if (displayMode) {
+          svg3.properties.style += "; display: block; margin: 0 auto;";
+        }
+        result = root2.children;
+      } catch (error2) {
+        file.message("Could not render math with typst", {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          ancestors: [...parents, element4],
+          cause: error2,
+          place: element4.position,
+          source: "rehype-typst"
+        });
+        result = [
+          {
+            type: "element",
+            tagName: "span",
+            properties: {
+              className: ["typst-error"],
+              style: "color:" + errorColor,
+              title: String(error2)
+            },
+            children: [{ type: "text", value }]
+          }
+        ];
+      }
+      const index2 = parent.children.indexOf(scope);
+      parent.children.splice(index2, 1, ...result);
+      return SKIP;
+    };
+    await Promise.all(matches2.map(([element4, parents]) => visitor(element4, parents)));
+  };
+}
+
+// src/transformer.ts
 var ENGINES = ["katex", "mathjax", "typst"];
 var isEngine = (value) => ENGINES.includes(value);
 var Latex = (opts) => {

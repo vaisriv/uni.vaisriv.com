@@ -158,6 +158,29 @@ plugins:
               # integrals
               "\\inti": "\\int #1 \\mathrm{\\,d}#2"
               "\\intd": "\\int_{#1}^{#2} #3 \\mathrm{\\,d}#4"
+          # prepended to every typst formula
+          typstOptions:
+              preamble: |
+                  #import "@preview/physica:0.9.8": *
+                  #import "@preview/unify:0.8.1": *
+
+                  // upright vectors
+                  #let vectorboldupright(a) = vb($upright(#a)$)
+                  #let vbu = vectorboldupright
+                  #let vectorunitupright(a) = vu($upright(#a)$)
+                  #let vuu = vectorunitupright
+                  #let vectorarrowupright(a) = va($upright(#a)$)
+                  #let vau = vectorarrowupright
+
+                  // automatically use square brackets for vectors and matricies
+                  #set math.vec(delim: "[")
+                  #set math.mat(delim: "[")
+                  #let vecrowOld = vecrow
+                  #let vecrow = vecrowOld.with(delim: "[")
+
+                  // custom units
+                  #add-unit("decibelIsotropic", "dBi", "upright(\"dBi\")", space: true)
+                  #add-unit("decibelWatt", "dBW", "upright(\"dBW\")", space: true)
       order: 80
     - source: "@quartz-community/citations"
       enabled: false
